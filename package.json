@@ -1,0 +1,22 @@
+{
+  "name": "hqweb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrTriad/HQweb.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MrTriad/HQweb/issues"
+  },
+  "homepage": "https://github.com/MrTriad/HQweb#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
