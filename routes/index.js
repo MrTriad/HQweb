@@ -18,4 +18,8 @@ router.post("/reviews", (req, res) => {
 	res.render("./reviews/index");
 });
 
+router.post("/shoppingList", (req, res) => {
+	res.render("./shoppingList/index");
+});
+
 module.exports = router;
