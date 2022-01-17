@@ -22,4 +22,8 @@ router.post("/shoppingList", (req, res) => {
 	res.render("./shoppingList/index");
 });
 
+router.get("/debug", (req, res) => {
+	res.render("navbar");
+});
+
 module.exports = router;
