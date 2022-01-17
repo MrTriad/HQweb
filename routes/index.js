@@ -6,4 +6,16 @@ router.get("/", (req, res) => {
 	res.render("index");
 });
 
+router.post("/houseworks", (req, res) => {
+	res.render("./houseworks/index");
+});
+
+// router.post("/dashboard", (req, res) => {
+// 	res.render("/dashboard");
+// });
+
+router.post("/reviews", (req, res) => {
+	res.render("./reviews/index");
+});
+
 module.exports = router;

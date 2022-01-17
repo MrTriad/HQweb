@@ -1,0 +1,69 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  title HQ Reviews
+  include ../includes/head.pug
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+.card.text-center
+  .card-header
+    | {Nome utente}
+  .card-body
+    i.fa.fa-star(aria-hidden='true')
+    i.fa.fa-star(aria-hidden='true')
+    i.fa.fa-star(aria-hidden='true')
+    i.fa.fa-star(aria-hidden='true')
+    i.fa.fa-star-o(aria-hidden='true')
+    p.card-text That was the best experience I have ever had.
+    span.badge.badge-pill.badge-primary Hosted by Zini
+  .card-footer.text-muted
+    | 2 days ago
+br
+br
+.card.text-center
+  .card-header
+    | Federico Corona
+  .card-body
+    i.fa.fa-star(aria-hidden='true')
+    i.fa.fa-star(aria-hidden='true')
+    i.fa.fa-star(aria-hidden='true')
+    i.fa.fa-star-half-o(aria-hidden='true')
+    i.fa.fa-star-o(aria-hidden='true')
+    p.card-text Easy WiFi password ;)
+    span.badge.badge-pill.badge-primary Hosted by Bru
+  .card-footer.text-muted
+    | 3 days ago
+br
+br
+.card.text-center
+  .card-header
+    | Francesco Mosna
+  .card-body
+    i.fa.fa-star(aria-hidden='true')
+    i.fa.fa-star-half-o(aria-hidden='true')
+    i.fa.fa-star-o(aria-hidden='true')
+    i.fa.fa-star-o(aria-hidden='true')
+    i.fa.fa-star-o(aria-hidden='true')
+    p.card-text I had to cook...
+    span.badge.badge-pill.badge-primary Hosted by Tave
+  .card-footer.text-muted
+    | 4 days ago
+
+
+    
+//DA RIVEDERE COME IDEA
+.jumbotron
+  h1.display-5 Total Rating stars
+  p.lead
+    i.fa.fa-star(aria-hidden='true')
+    i.fa.fa-star(aria-hidden='true')
+    i.fa.fa-star(aria-hidden='true')
+    i.fa.fa-star-half-o(aria-hidden='true')
+    i.fa.fa-star-o(aria-hidden='true')
+  hr.my-4
+  h1.display-5 Yours Rating stars
+  p.lead
+    i.fa.fa-star(aria-hidden='true')
+    i.fa.fa-star(aria-hidden='true')
+    i.fa.fa-star(aria-hidden='true')
+    i.fa.fa-star(aria-hidden='true')
+    i.fa.fa-star-o(aria-hidden='true')
