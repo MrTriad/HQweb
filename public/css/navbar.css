@@ -112,11 +112,14 @@ header {
 @media (max-width: 768px) {
     header {
         display: flex;
+				position: fixed;
+				width: 100%;
         justify-content: space-around;
         align-items: center;
         height: 60px;
         background: var(--bg-secondary);
         color: var(--cl-text);
+				z-index: 999;
     }
 
     header a {
@@ -124,12 +127,15 @@ header {
     }
 
     nav {
+				margin-top: 60px;
         left: -60px;
+				z-index: 999;
     }
 
     nav.active {
         left: 0;
         width: 100%;
+				
     }
 
     nav ul li a.toggle {
@@ -137,13 +143,14 @@ header {
     }
 
 		.container {
-			padding-left:15px
+			padding-left:15px;
+			padding-top: 60px;
 		}
 }
 
 :root {
     --bg-secondary: #52575d;
-    --bg-active: #fddb3a;
+    --bg-active: #0085ff;
     --cl-text: #f6f4e6;
 }
 
