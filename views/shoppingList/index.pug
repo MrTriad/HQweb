@@ -1,18 +1,59 @@
 doctype html
 head
-  meta(charset='UTF-8')
-  title HQ Shopping List
-  include ../includes/head.pug
+	meta(charset='UTF-8')
+	title HQ Shopping List
+	include ../includes/head.pug
 h1.display-2 Shopping List
 ul.list-group
-  li.list-group-item.list-group-item-primary Pane a fette
-  li.list-group-item.list-group-item-success Vino Rèmole
-  li.list-group-item.list-group-item-danger Insalta iceberg
-  li.list-group-item.list-group-item-success Salsa di pomodoro
-  li.list-group-item.list-group-item-success Burro
+	li.list-group-item.list-group-item-primary Pane a fette
+	li.list-group-item.list-group-item-success Vino Rèmole
+	li.list-group-item.list-group-item-danger Insalta iceberg
+	li.list-group-item.list-group-item-success Salsa di pomodoro
+	li.list-group-item.list-group-item-success Burro
 br
 br
 br
 span.badge.badge-primary Tave 
 span.badge.badge-success Bru
 span.badge.badge-danger Zini
+br
+br
+br
+h1.display-4 History 
+br
+.btn-group
+	button.btn.dropdown-toggle.btn-primary(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+		| 31/12/2021
+	.dropdown-menu(x-placement='bottom-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);')
+		.dropdown-item Pasta
+		.dropdown-item Pane
+		.dropdown-item Pizza
+		.dropdown-item Pesto
+		.dropdown-item Cipolla
+		.dropdown-item Maionese
+		.dropdown-divider
+		a.dropdown-item(href='#') Show List
+br
+br
+.btn-group
+	button.btn.dropdown-toggle.btn-primary(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+		| 18/11/2021
+	.dropdown-menu(x-placement='bottom-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);')
+		.dropdown-item Vino
+		.dropdown-item Ketchup
+		.dropdown-item Kebab di pollo
+		.dropdown-item Patate
+		.dropdown-divider
+		a.dropdown-item(href='#') Show List
+br
+br
+.btn-group
+	button.btn.dropdown-toggle.btn-primary(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+		| 21/10/2021
+	.dropdown-menu(x-placement='bottom-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);')
+		.dropdown-item Vino
+		.dropdown-item Ketchup
+		.dropdown-item Kebab di pollo
+		.dropdown-item Patate
+		.dropdown-divider
+		a.dropdown-item(href='#') Show List
