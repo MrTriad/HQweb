@@ -6,24 +6,24 @@ router.get("/", (req, res) => {
 	res.render("index");
 });
 
-router.post("/houseworks", (req, res) => {
-	res.render("./houseworks/index");
-});
-
 router.get("/houseworks", (req, res) => {
-	res.render("./houseworks/index");
+	res.render("houseworks/index");
 });
 
-// router.post("/dashboard", (req, res) => {
-// 	res.render("/dashboard");
-// });
-
-router.post("/reviews", (req, res) => {
-	res.render("./reviews/index");
+router.get("/dashboard", (req, res) => {
+	res.render("/dashboard");
 });
 
-router.post("/shoppingList", (req, res) => {
-	res.render("./shoppingList/index");
+router.get("/reviews", (req, res) => {
+	res.render("reviews/index");
+});
+
+router.get("/shoppingList", (req, res) => {
+	res.render("shoppingList/index");
+});
+
+router.get("/profile", (req, res) => {
+	res.render("profile/index");
 });
 
 router.get("/debug", (req, res) => {
