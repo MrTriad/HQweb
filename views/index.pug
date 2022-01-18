@@ -1,18 +1,19 @@
-doctype html
-head
-	meta(charset='UTF-8')
-	title HQ Login
-	include includes/head.pug
-header
-	h1 Login
-form(action='/dashboard' method='get')
-	fieldset
-		label Username
-		input#username(type='username' name='username' required='')
-		br
-		br
-		label Password
-		input#password(type='password' name='password' required='')
-		br
-		br
-		button(type='submit') Submit
+extends /layouts/standardNavbar.pug
+block variables
+	- var title = 'HQweb'
+block append content 
+	br
+	| Aggiungere Calendario qui 
+	br
+	br
+	br
+	| Your housework of the week is:
+	input#example-text-input.form-control(type='text' value='HOUSEWORK' readonly)
+	br
+	br
+	br
+	| Quick add shopping: 
+	.input-group.mb-3
+		input.form-control(type='text' placeholder="Bread..." aria-label="Recipient's username" aria-describedby='basic-addon2')
+		.input-group-append
+		a.btn.btn-primary(href='#') Add

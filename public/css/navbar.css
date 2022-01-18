@@ -105,6 +105,10 @@ header {
     display: none;
 }
 
+.container {
+	padding-left:60px
+}
+
 @media (max-width: 768px) {
     header {
         display: flex;
@@ -132,15 +136,14 @@ header {
         display: none;
     }
 
-
-
+		.container {
+			padding-left:15px
+		}
 }
 
 :root {
-    
     --bg-secondary: #52575d;
     --bg-active: #fddb3a;
     --cl-text: #f6f4e6;
 }
-
 
