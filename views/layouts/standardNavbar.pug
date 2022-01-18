@@ -1,0 +1,78 @@
+block variables
+doctype html
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		meta(http-equiv="X-UA-Compatible", content="IE=edge")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		title HQweb - #{title}
+
+		block style
+			link(rel='stylesheet', href='css/bootstrap4-wizardry.min.css', type='text/css')
+			link(rel='stylesheet', href='css/fonts.css', type='text/css')
+			link(rel='stylesheet' href='css/navbar.css' type='text/css')
+			
+
+	body
+		div(class='wrapper')
+			block navbar
+				header
+					.toggle
+						i.fas.fa-bars
+					h3 HQweb
+					a(href='#')
+						i.fas.fa-sign-out-alt
+				div(class='sidebar')
+					nav(id='navbar')
+						ul
+							li
+								a.toggle
+									span.icon
+										i.fas.fa-bars
+									span.title Menu
+							li
+								a(href='#')
+									span.icon
+										i.fas.fa-home
+									span.title Home
+							li
+								a(href='#')
+									span.icon
+										i.fas.fa-user
+									span.title Profile
+							li
+								a(href='#')
+									span.icon
+										i.fas.fa-envelope
+									span.title Messages
+							li
+								a(href='#')
+									span.icon
+										i.fas.fa-info
+									span.title Help
+							li
+								a(href='#')
+									span.icon
+										i.fas.fa-cog
+									span.title Setting
+							li
+								a(href='#')
+									span.icon
+										i.fas.fa-lock
+									span.title Password
+							li
+								a(href='#')
+									span.icon
+										i.fas.fa-sign-out-alt
+									span.title Sign Out
+				div(class='container' style='padding-left:60px')
+					block content
+						.jumbotron
+							h1.display-3 #{title}
+
+
+		footer 
+			block foot
+			block scripts
+				script(src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js')
+				script(src="js/navbar.js") 

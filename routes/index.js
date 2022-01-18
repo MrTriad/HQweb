@@ -10,6 +10,10 @@ router.post("/houseworks", (req, res) => {
 	res.render("./houseworks/index");
 });
 
+router.get("/houseworks", (req, res) => {
+	res.render("./houseworks/index");
+});
+
 // router.post("/dashboard", (req, res) => {
 // 	res.render("/dashboard");
 // });
