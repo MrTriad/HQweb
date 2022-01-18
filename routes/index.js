@@ -22,6 +22,10 @@ router.get("/shoppingList", (req, res) => {
 	res.render("shoppingList/index");
 });
 
+router.get("/profile", (req, res) => {
+	res.render("profile/index");
+});
+
 router.get("/debug", (req, res) => {
 	res.render("navbar");
 });
