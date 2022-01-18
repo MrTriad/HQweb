@@ -11,7 +11,11 @@ router.get("/houseworks", (req, res) => {
 });
 
 router.get("/dashboard", (req, res) => {
-	res.render("/dashboard");
+	res.render("dashboard");
+});
+
+router.get("/booking", (req, res) => {
+	res.render("booking/index");
 });
 
 router.get("/reviews", (req, res) => {

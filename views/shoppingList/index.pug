@@ -1,85 +1,61 @@
-doctype html
-<<<<<<< HEAD
-html(lang="en")
-	head
-		meta(charset="UTF-8")
-		meta(http-equiv="X-UA-Compatible", content="IE=edge")
-		meta(name="viewport", content="width=device-width, initial-scale=1.0")
-		title Document
-		include ../includes/head.pug
-	body 
-		title HQ Shopping List
-		
-		h1.display-2 Shopping List
-		ul.list-group
-			li.list-group-item.list-group-item-primary Pane a fette
-			li.list-group-item.list-group-item-success Vino Rèmole
-			li.list-group-item.list-group-item-danger Insalta iceberg
-			li.list-group-item.list-group-item-success Salsa di pomodoro
-			li.list-group-item.list-group-item-success Burro
-		br
-		br
-		br
-		span.badge.badge-primary Tave 
-		span.badge.badge-success Bru
-		span.badge.badge-danger Zini
-=======
-head
-	meta(charset='UTF-8')
-	title HQ Shopping List
-	include ../includes/head.pug
-h1.display-2 Shopping List
-ul.list-group
-	li.list-group-item.list-group-item-primary Pane a fette
-	li.list-group-item.list-group-item-success Vino Rèmole
-	li.list-group-item.list-group-item-danger Insalta iceberg
-	li.list-group-item.list-group-item-success Salsa di pomodoro
-	li.list-group-item.list-group-item-success Burro
-br
-br
-br
-span.badge.badge-primary Tave 
-span.badge.badge-success Bru
-span.badge.badge-danger Zini
-br
-br
-br
-h1.display-4 History 
-br
-.btn-group
-	button.btn.dropdown-toggle.btn-primary(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-		| 31/12/2021
-	.dropdown-menu(x-placement='bottom-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);')
-		.dropdown-item Pasta
-		.dropdown-item Pane
-		.dropdown-item Pizza
-		.dropdown-item Pesto
-		.dropdown-item Cipolla
-		.dropdown-item Maionese
-		.dropdown-divider
-		a.dropdown-item(href='#') Show List
-br
-br
-.btn-group
-	button.btn.dropdown-toggle.btn-primary(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-		| 18/11/2021
-	.dropdown-menu(x-placement='bottom-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);')
-		.dropdown-item Vino
-		.dropdown-item Ketchup
-		.dropdown-item Kebab di pollo
-		.dropdown-item Patate
-		.dropdown-divider
-		a.dropdown-item(href='#') Show List
-br
-br
-.btn-group
-	button.btn.dropdown-toggle.btn-primary(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-		| 21/10/2021
-	.dropdown-menu(x-placement='bottom-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);')
-		.dropdown-item Vino
-		.dropdown-item Ketchup
-		.dropdown-item Kebab di pollo
-		.dropdown-item Patate
-		.dropdown-divider
-		a.dropdown-item(href='#') Show List
->>>>>>> ff9afc49661375e05350116ba62b8fc0b96ee7b8
+extends /layouts/standardNavbar.pug
+block variables
+	- var title = 'Shopping List'
+block append content
+	span.badge.badge-primary Tave 
+	span.badge.badge-success Bru
+	span.badge.badge-danger Zini
+	br
+	br
+	ul.list-group
+		li.list-group-item.list-group-item-primary Pane a fette
+		li.list-group-item.list-group-item-success Vino Rèmole
+		li.list-group-item.list-group-item-danger Insalta iceberg
+		li.list-group-item.list-group-item-success Salsa di pomodoro
+		li.list-group-item.list-group-item-success Burro
+	br
+	.input-group.mb-3
+		input.form-control(type='text' placeholder="Add any item" aria-label="Recipient's username" aria-describedby='basic-addon2')
+		.input-group-append
+			button.btn.btn-primary(type='button') Inserisci
+	br
+	br
+	br
+	h1.display-4 History 
+	br
+	.btn-group
+		button.btn.dropdown-toggle.btn-primary(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+			| 31/12/2021
+		.dropdown-menu(x-placement='bottom-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);')
+			.dropdown-item Pasta
+			.dropdown-item Pane
+			.dropdown-item Pizza
+			.dropdown-item Pesto
+			.dropdown-item Cipolla
+			.dropdown-item Maionese
+			.dropdown-divider
+			a.dropdown-item(href='#') Show List
+	br
+	br
+	.btn-group
+		button.btn.dropdown-toggle.btn-primary(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+			| 18/11/2021
+		.dropdown-menu(x-placement='bottom-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);')
+			.dropdown-item Vino
+			.dropdown-item Ketchup
+			.dropdown-item Kebab di pollo
+			.dropdown-item Patate
+			.dropdown-divider
+			a.dropdown-item(href='#') Show List
+	br
+	br
+	.btn-group
+		button.btn.dropdown-toggle.btn-primary(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+			| 21/10/2021
+		.dropdown-menu(x-placement='bottom-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);')
+			.dropdown-item Vino
+			.dropdown-item Ketchup
+			.dropdown-item Kebab di pollo
+			.dropdown-item Patate
+			.dropdown-divider
+			a.dropdown-item(href='#') Show List
