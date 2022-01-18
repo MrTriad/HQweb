@@ -2,50 +2,52 @@ extends /layouts/standardNavbar.pug
 block variables
 	- var title = 'Reviews'
 block append content
-	.card.text-center
-		.card-header
-			| {Nome utente}
-		.card-body
-			i.fa.fa-star(aria-hidden='true')
-			i.fa.fa-star(aria-hidden='true')
-			i.fa.fa-star(aria-hidden='true')
-			i.fa.fa-star(aria-hidden='true')
-			i.fa.fa-star-o(aria-hidden='true')
-			p.card-text That was the best experience I have ever had.
-			span.badge.badge-pill.badge-primary Hosted by Zini
-		.card-footer.text-muted
-			| 2 days ago
-	br
-	br
-	.card.text-center
-		.card-header
-			| Federico Corona
-		.card-body
-			i.fa.fa-star(aria-hidden='true')
-			i.fa.fa-star(aria-hidden='true')
-			i.fa.fa-star(aria-hidden='true')
-			i.fa.fa-star-half-o(aria-hidden='true')
-			i.fa.fa-star-o(aria-hidden='true')
-			p.card-text Easy WiFi password ;)
-			span.badge.badge-pill.badge-primary Hosted by Bru
-		.card-footer.text-muted
-			| 3 days ago
-	br
-	br
-	.card.text-center
-		.card-header
-			| Francesco Mosna
-		.card-body
-			i.fa.fa-star(aria-hidden='true')
-			i.fa.fa-star-half-o(aria-hidden='true')
-			i.fa.fa-star-o(aria-hidden='true')
-			i.fa.fa-star-o(aria-hidden='true')
-			i.fa.fa-star-o(aria-hidden='true')
-			p.card-text I had to cook...
-			span.badge.badge-pill.badge-primary Hosted by Tave
-		.card-footer.text-muted
-			| 4 days ago
-	br
+	.jumbotron
+		.card.text-center
+			.card-header
+				| {Nome utente}
+			.card-body
+				i.fa.fa-star(aria-hidden='true')
+				i.fa.fa-star(aria-hidden='true')
+				i.fa.fa-star(aria-hidden='true')
+				i.fa.fa-star(aria-hidden='true')
+				i.fa.fa-star-o(aria-hidden='true')
+				p.card-text That was the best experience I have ever had.
+				span.badge.badge-pill.badge-danger Hosted by Zini
+			.card-footer.text-muted
+				| 2 days ago
+		br
+		br
+		br
+		.card.text-center
+			.card-header
+				| Federico Corona
+			.card-body
+				i.fa.fa-star(aria-hidden='true')
+				i.fa.fa-star(aria-hidden='true')
+				i.fa.fa-star(aria-hidden='true')
+				i.fa.fa-star-half-o(aria-hidden='true')
+				i.fa.fa-star-o(aria-hidden='true')
+				p.card-text Easy WiFi password ;)
+				span.badge.badge-pill.badge-success Hosted by Bru
+			.card-footer.text-muted
+				| 3 days ago
+		br
+		br
+		br
+		.card.text-center
+			.card-header
+				| Francesco Mosna
+			.card-body
+				i.fa.fa-star(aria-hidden='true')
+				i.fa.fa-star-half-o(aria-hidden='true')
+				i.fa.fa-star-o(aria-hidden='true')
+				i.fa.fa-star-o(aria-hidden='true')
+				i.fa.fa-star-o(aria-hidden='true')
+				p.card-text I had to cook...
+				span.badge.badge-pill.badge-primary Hosted by Tave
+			.card-footer.text-muted
+				| 4 days ago
 
 
 	//DA RIVEDERE COME IDEA
@@ -59,6 +61,8 @@ block append content
 			i.fa.fa-star-o(aria-hidden='true')
 		hr.my-4
 		h1.display-5 Yours Rating stars
+			//span.badge.badge-pill.badge-primary Tave
+			//DA RIVEDERE
 		p.lead
 			i.fa.fa-star(aria-hidden='true')
 			i.fa.fa-star(aria-hidden='true')
