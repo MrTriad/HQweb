@@ -1,0 +1,21 @@
+doctype html
+head
+	meta(charset='UTF-8')
+	title HQ Dashboard
+	include includes/head.pug
+h1.display-2 Dashboard 
+br
+| Aggiungere Calendario qui 
+br
+br
+br
+| Your housework of the week is:
+input#example-text-input.form-control(type='text' value='HOUSEWORK')
+br
+br
+br
+| Quick add shopping: 
+.input-group.mb-3
+	input.form-control(type='text' placeholder="Bread..." aria-label="Recipient's username" aria-describedby='basic-addon2')
+	.input-group-append
+	a.btn.btn-primary(href='#') Add
