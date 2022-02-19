@@ -2,6 +2,15 @@ extends /layouts/standardNavbar.pug
 block variables
 	- var title = 'Shopping List'
 block append content
+
+	/////////////////////////////////////////////////////////////////////////////
+
+	.alert.alert-dismissible.fade.show.alert-danger(role='alert')
+		button.close(type='button' data-dismiss='alert' aria-label='Close')
+			span(aria-hidden='true') &times;
+		| Solo l'ultimo showList funziona gli altri sono predisposti per un id
+		
+	/////////////////////////////////////////////////////////////////////////////
 	span.badge.badge-primary Tave 
 	span.badge.badge-success Bru
 	span.badge.badge-danger Zini
@@ -34,7 +43,7 @@ block append content
 			.dropdown-item Cipolla
 			.dropdown-item Maionese
 			.dropdown-divider
-			a.dropdown-item(href='#') Show List
+			a.dropdown-item(href='showList/{ID}') Show List
 	br
 	br
 	.btn-group
@@ -46,7 +55,7 @@ block append content
 			.dropdown-item Kebab di pollo
 			.dropdown-item Patate
 			.dropdown-divider
-			a.dropdown-item(href='#') Show List
+			a.dropdown-item(href='showList/{ID}') Show List
 	br
 	br
 	.btn-group
@@ -58,7 +67,7 @@ block append content
 			.dropdown-item Kebab di pollo
 			.dropdown-item Patate
 			.dropdown-divider
-			a.dropdown-item(href='#') Show List
+			a.dropdown-item(href='/showList') Show List
 
 block append scripts
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -22,12 +22,20 @@ router.get("/booking", (req, res) => {
 	res.render("booking/index");
 });
 
+router.get("/addBooking", (req, res) => {
+	res.render("booking/addBooking");
+});
+
 router.get("/reviews", (req, res) => {
 	res.render("reviews/index");
 });
 
 router.get("/shoppingList", (req, res) => {
 	res.render("shoppingList/index");
+});
+
+router.get("/showList", (req, res) => {
+	res.render("shoppingList/showList");
 });
 
 router.get("/profile", (req, res) => {
