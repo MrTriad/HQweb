@@ -1,5 +1,9 @@
 "use strict"
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 ///////////////////////////////////////////////////////////////////////////
 ///// Server setup ////////////////////////////////////////////////////////
 
@@ -7,27 +11,32 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const port = process.env.port || 3000;
+const flash = require('express-flash')
 app.use(express.static(__dirname + '/public'));
 app.locals.basedir = path.join(__dirname, 'views');
 var favicon = require('serve-favicon');
 app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 app.use(express.urlencoded({ extended: true }));
-
-const flash = require('express-flash')
 app.use(flash())
+
+///////////////////////////////////////////////////////////////////////////
+///// Database Connection /////////////////////////////////////////////////
 
 const mongoose = require('mongoose')
 //TODO add env for password
-const MONGO_URI = "mongodb+srv://HQ:GVDB1337@hqfirst.2jyxa.mongodb.net/HQwebDB1?retryWrites=true&w=majority";
+const MONGO_URI = 'mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PASS+'@'+process.env.DB_HOST+'?retryWrites=true&w=majority'
+console.log(MONGO_URI)
 const clientDB = mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 	.then(m => m.connection.getClient())
 	.catch(err => console.log(err));
 
+///////////////////////////////////////////////////////////////////////////
+///// Session setup ///////////////////////////////////////////////////////
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 app.use(session({
-  secret: 'secretsecret',   //TODO make private
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({
@@ -56,6 +65,7 @@ app.set("views", path.join(__dirname, "views"));
 const apiRouter = require("./server/routes/api/auth");
 app.use("/api", apiRouter);
 const indexRouter = require("./server/routes/index");
+const { Console } = require('console');
 app.use("/", indexRouter);
 
 ///////////////////////////////////////////////////////////////////////////
