@@ -3,15 +3,15 @@ doctype html
 html(lang="en")
 	head
 		meta(charset="UTF-8")
-		meta(http-equiv="X-UA-Compatible", content="IE=edge")
-		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
 		title HQweb - #{title}
 
 		block style
-			link(rel='stylesheet', href='css/bootstrap4-wizardry.min.css', type='text/css')
-			link(rel='stylesheet', href='css/fonts.css', type='text/css')
+			link(rel='stylesheet' href='css/bootstrap4-wizardry.min.css' type='text/css')
+			link(rel='stylesheet' href='css/fonts.css' type='text/css')
 			link(rel='stylesheet' href='css/navbar.css' type='text/css')
-			
+
 
 	body
 		div(class='wrapper')
@@ -36,35 +36,42 @@ html(lang="en")
 										i.fas.fa-home
 									span.title Home
 							li
-								a(href='profile')
-									span.icon
-										i.fas.fa-user
-									span.title Profile
-							li
 								a(href='reviews')
 									span.icon
 										i.fas.fa-edit
 									span.title Review
 							li
-								a(href='shoppingList')
-									span.icon
-										i.fas.fa-cart-arrow-down
-									span.title Shop list
-							li
-								a(href='houseworks')
-									span.icon
-										i.fas.fa-check-square
-									span.title Houseworks
-							li
-								a(href='booking')
-									span.icon
-										i.fas.fa-calendar
-									span.title Book
-							li
-								a(href='#')
+								a(href='login')
 									span.icon
 										i.fas.fa-sign-out-alt
-									span.title Sign Out
+									span.title Log in
+							-if(typeof(session) !== 'undefined')
+								li
+									a(href='profile')
+										span.icon
+											i.fas.fa-user
+										span.title #{session.username}
+								li
+									a(href='shoppingList')
+										span.icon
+											i.fas.fa-cart-arrow-down
+										span.title Shop list
+								li
+									a(href='houseworks')
+										span.icon
+											i.fas.fa-check-square
+										span.title Houseworks
+								li
+									a(href='booking')
+										span.icon
+											i.fas.fa-calendar
+										span.title Book
+								li
+									a(href='#')
+										span.icon
+											i.fas.fa-sign-out-alt
+										span.title Sign Out
+
 				div(class='container')
 					block content
 						.jumbotron

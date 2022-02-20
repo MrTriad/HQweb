@@ -23,9 +23,7 @@ app.use(flash())
 ///// Database Connection /////////////////////////////////////////////////
 
 const mongoose = require('mongoose')
-//TODO add env for password
 const MONGO_URI = 'mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PASS+'@'+process.env.DB_HOST+'?retryWrites=true&w=majority'
-console.log(MONGO_URI)
 const clientDB = mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 	.then(m => m.connection.getClient())
 	.catch(err => console.log(err));
@@ -66,6 +64,7 @@ const apiRouter = require("./server/routes/api/auth");
 app.use("/api", apiRouter);
 const indexRouter = require("./server/routes/index");
 const { Console } = require('console');
+const req = require('express/lib/request');
 app.use("/", indexRouter);
 
 ///////////////////////////////////////////////////////////////////////////

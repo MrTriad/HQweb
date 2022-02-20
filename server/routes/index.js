@@ -3,27 +3,42 @@ const express = require('express');
 const router = express.Router();
 
 router.get("/", (req, res) => {
-	res.render("index");
+	//
+	res.render("index", {session: req.user});
 });
 
 router.get("/houseworks", (req, res) => {
-	res.render("houseworks/index");
+	if (req.isAuthenticated()) {
+		res.render("houseworks/index", {session: req.user});
+	}else{
+		res.redirect('login')
+	}
 });
 
 router.get("/login", (req, res) => {
+	if (req.isAuthenticated()) {
+		res.redirect("/");
+	}else{
+		res.render('login')
+	}
+});
+
+
+router.get("/register", (req, res) => {   //MISSING
 	res.render("login");
 });
 
-router.get("/register", (req, res) => {
-	res.render("login");
-});
-
-router.get("/dashboard", (req, res) => {
+router.get("/dashboard", (req, res) => {  //DELETE?
 	res.render("dashboard");
 });
 
 router.get("/booking", (req, res) => {
-	res.render("booking/index");
+	if (req.isAuthenticated()) {
+		res.render("booking/index", {session: req.user});
+	}else{
+		res.render('/login')
+	}
+	
 });
 
 router.get("/addBooking", (req, res) => {

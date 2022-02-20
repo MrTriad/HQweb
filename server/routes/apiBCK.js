@@ -6,11 +6,6 @@ const bcrypt = require('bcryptjs')
 ///////////////////////////////////////////////////////////////////////////
 ///// Database Connection /////////////////////////////////////////////////
 
-const mongoose = require('mongoose')
-//TODO add env for password
-const uri = "mongodb+srv://HQ:GVDB1337@hqfirst.2jyxa.mongodb.net/HQwebDB1?retryWrites=true&w=majority";
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
 const User = require('../models/user')
 
 router.post("/login", async (req, res) => {
