@@ -5,12 +5,12 @@ block append content
 	-if(messages.error)
 		.alert.alert-danger(role='alert')
 			strong #{messages.error}
-			|  Wrong Username or password.
 
 	.jumbotron
 		form(action='/api/login' method='post')
 			.form-group
 				label Username
-				input#username.form-control(type='username' placeholder='Enter username')
-				input#password.form-control(type='password' placeholder='Enter password')
+				input.form-control(type='username' name='username' placeholder='Enter username' required)
+				label Password
+				input.form-control(type='password' name='password' placeholder='Enter password' required)
 				button.btn.btn-primary(type='submit') Submit

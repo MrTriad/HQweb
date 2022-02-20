@@ -15,7 +15,7 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/register", (req, res) => {
-	res.render("login");
+	res.render("register");
 });
 
 router.get("/dashboard", (req, res) => {
