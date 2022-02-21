@@ -40,17 +40,13 @@ html(lang="en")
 									span.icon
 										i.fas.fa-edit
 									span.title Review
-							li
-								a(href='login')
-									span.icon
-										i.fas.fa-sign-out-alt
-									span.title Log in
-							-if(typeof(session) !== 'undefined')
+							-if(typeof(session) == 'undefined')
 								li
-									a(href='profile')
+									a(href='login')
 										span.icon
 											i.fas.fa-user
-										span.title #{session.username}
+										span.title Login
+							-else
 								li
 									a(href='shoppingList')
 										span.icon
@@ -67,7 +63,12 @@ html(lang="en")
 											i.fas.fa-calendar
 										span.title Book
 								li
-									a(href='#')
+									a(href='profile')
+										span.icon
+											i.fas.fa-user
+										span.title #{session.username}
+								li
+									a(href='api/logout')
 										span.icon
 											i.fas.fa-sign-out-alt
 										span.title Sign Out
