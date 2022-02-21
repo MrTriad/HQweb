@@ -3,7 +3,6 @@ const express = require('express');
 const router = express.Router();
 
 router.get("/", (req, res) => {
-	//
 	res.render("index", {session: req.user});
 });
 
@@ -23,14 +22,9 @@ router.get("/login", (req, res) => {
 	}
 });
 
-<<<<<<< HEAD
 
 router.get("/register", (req, res) => {   //MISSING
 	res.render("login");
-=======
-router.get("/register", (req, res) => {
-	res.render("register");
->>>>>>> d5d4b86d9cac551712a9122ee1d91739a8de6297
 });
 
 router.get("/dashboard", (req, res) => {  //DELETE?
