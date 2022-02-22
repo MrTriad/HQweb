@@ -3,11 +3,27 @@ block variables
 	- var title = 'Add Booking'
 block append content
 	.jumbotron 
-		| Check In
-		input#example-date-input.form-control(type='date' value='2022-01-18')
-		| Check Out
-		input#example-date-input.form-control(type='date' )
-		| Guests
-		input#example-number-input.form-control(type='number' value='1' min='1' max='10')
-		| Inserire una empty line perchè non ci riesco
-		a.btn.btn-primary.btn-block(href='#') Check Availability
+		form(action="api/calendar/addBooking", method="post")
+			.form-group 
+				| Check In
+				input#date_start.form-control(type='date' name='date_start' )
+				| Check Out
+				input#date_end.form-control(type='date' name='date_end' )
+				| Guests
+				input#guests_number.form-control(type='number' value='1' min='1' max='10' name='guests_number')
+				br
+				-if(message)
+					.alert.alert-danger(role='alert')
+						strong #{message}
+
+				button.btn.btn-primary.btn-block(type='submit') Check Availability
+
+		
+		script.
+			Date.prototype.toDateInputValue = (function() {
+				var local = new Date(this);
+				local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+				return local.toJSON().slice(0,10);
+			});
+
+			document.getElementById('date_start').valueAsDate = new Date();

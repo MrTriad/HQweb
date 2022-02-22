@@ -7,7 +7,7 @@ block append content
 			strong #{messages.error}
 
 	.jumbotron
-		form(action='/api/register' method='post')
+		form(action='/api/auth/register' method='post')
 			.form-group
 				label Username
 				input.form-control(type='username' name='username' placeholder='Enter username' required)

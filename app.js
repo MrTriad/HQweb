@@ -17,7 +17,11 @@ app.locals.basedir = path.join(__dirname, 'views');
 var favicon = require('serve-favicon');
 app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 app.use(express.urlencoded({ extended: true }));
-app.use(flash())
+
+app.locals.moment = require('moment');
+
+
+
 
 ///////////////////////////////////////////////////////////////////////////
 ///// Database Connection /////////////////////////////////////////////////
@@ -30,6 +34,7 @@ const clientDB = mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnified
 
 ///////////////////////////////////////////////////////////////////////////
 ///// Session setup ///////////////////////////////////////////////////////
+
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
@@ -50,6 +55,15 @@ const passport = require("./server/passport/setup");
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(flash())
+
+app.use(function(req, res, next){
+	res.locals.success_messages = req.flash('success_messages');
+	res.locals.error_messages = req.flash('error_messages');
+	next();
+});
+
+
 
 ///////////////////////////////////////////////////////////////////////////
 ///// Views setup /////////////////////////////////////////////////////////
@@ -60,11 +74,13 @@ app.set("views", path.join(__dirname, "views"));
 ///////////////////////////////////////////////////////////////////////////
 ///// Routes setup ////////////////////////////////////////////////////////
 
-const apiRouter = require("./server/routes/api/auth");
-app.use("/api", apiRouter);
+const apiAuth = require("./server/routes/api/auth");
+app.use("/api/auth", apiAuth);
+const apiCalendar = require("./server/routes/api/calendar");
+app.use("/api/calendar", apiCalendar);
+
+
 const indexRouter = require("./server/routes/index");
-const { Console } = require('console');
-const req = require('express/lib/request');
 app.use("/", indexRouter);
 
 ///////////////////////////////////////////////////////////////////////////

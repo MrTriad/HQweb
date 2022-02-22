@@ -24,11 +24,11 @@ router.get("/login", (req, res) => {
 
 
 router.get("/register", (req, res) => {   //MISSING
-	res.render("login");
-});
-
-router.get("/dashboard", (req, res) => {  //DELETE?
-	res.render("dashboard");
+	if (req.isAuthenticated()) {
+		res.render("register", {session: req.user});
+	}else{
+		res.redirect('login')
+	}
 });
 
 router.get("/booking", (req, res) => {
@@ -41,7 +41,11 @@ router.get("/booking", (req, res) => {
 });
 
 router.get("/addBooking", (req, res) => {
-	res.render("booking/addBooking");
+	if (req.isAuthenticated()) {
+		res.render("booking/addBooking", {session: req.user});
+	}else{
+		res.redirect('login')
+	}
 });
 
 router.get("/reviews", (req, res) => {
@@ -49,19 +53,27 @@ router.get("/reviews", (req, res) => {
 });
 
 router.get("/shoppingList", (req, res) => {
-	res.render("shoppingList/index");
+	if (req.isAuthenticated()) {
+		res.render("shoppingList/index", {session: req.user});
+	}else{
+		res.redirect('login')
+	}
 });
 
 router.get("/showList", (req, res) => {
-	res.render("shoppingList/showList");
+	if (req.isAuthenticated()) {
+		res.render("shoppingList/showList", {session: req.user});
+	}else{
+		res.redirect('login')
+	}
 });
 
 router.get("/profile", (req, res) => {
-	res.render("profile/index");
-});
-
-router.get("/debug", (req, res) => {
-	res.render("navbar");
+	if (req.isAuthenticated()) {
+		res.render("profile/index", {session: req.user});
+	}else{
+		res.redirect('login')
+	}
 });
 
 module.exports = router;
