@@ -76,8 +76,8 @@ app.set("views", path.join(__dirname, "views"));
 
 const routerAuth = require("./server/routes/subroutes/auth");
 app.use("/auth", routerAuth);
-const routerCalendar = require("./server/routes/subroutes/calendar");
-app.use("/calendar", routerCalendar);
+const routerBooking = require("./server/routes/subroutes/booking");
+app.use("/booking", routerBooking);
 
 
 const indexRouter = require("./server/routes/index");

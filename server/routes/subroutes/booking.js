@@ -2,7 +2,7 @@
 const express = require('express')
 const router = express.Router();
 
-const User = require('../../models/calendar_event')
+const CalendarEvent = require('../../models/calendar_event')
 
 ///////////////////////////////////////////////////////////////////////////
 ///// API /////////////////////////////////////////////////////////////////
@@ -17,7 +17,7 @@ router.post("/addBooking", async (req, res) => {
 		res.redirect('/addBooking')
 	}else{
 		try {
-			const response = await User.create({
+			const response = await CalendarEvent.create({
 				author,
 				guests_number,
 				date_start,
@@ -37,10 +37,13 @@ router.post("/addBooking", async (req, res) => {
 ///////////////////////////////////////////////////////////////////////////
 ///// Routes //////////////////////////////////////////////////////////////
 
-router.get("/booking", (req, res) => {
+router.get("/", async (req, res) => {
 	if (req.isAuthenticated()) {
-		
-		res.render("booking/index", {session: req.user});
+		const calendar_events = await CalendarEvent.find().sort({ date_start: 1 })
+		res.render("booking/index", {
+			session: req.user,
+			calendar_events: calendar_events
+		});
 	}else{
 		res.render('/login')
 	}
@@ -53,6 +56,5 @@ router.get("/addBooking", (req, res) => {
 		res.redirect('login')
 	}
 });
-
 
 module.exports = router

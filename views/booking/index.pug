@@ -6,11 +6,10 @@ block append content
 	br
 	a.btn.btn-primary.btn-block(onclick="alert('Not yet available')") Change your booking
 	br
-	.card.text-center
-		.card-header
-			| {Nome utente}
-		.card-body
-			p.card-text That was the best experience I have ever had.
-			span.badge.badge-pill.badge-danger Hosted by Zini
-		.card-footer.text-muted
-			| 2 days ago
+	each calendar_event in calendar_events
+		.card.text-center
+			.card-header
+				p #{moment(calendar_event.date_start).format('DD/MM/YYYY')} - #{moment(calendar_event.date_end).format('DD/MM/YYYY')}
+			.card-body
+				p.card-text #{calendar_event.author} booked for #{calendar_event.guests_number}
+		br

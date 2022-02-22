@@ -33,23 +33,6 @@ router.get("/register", (req, res) => {   //MISSING
 	}
 });
 
-router.get("/booking", (req, res) => {
-	if (req.isAuthenticated()) {
-		
-		res.render("booking/index", {session: req.user});
-	}else{
-		res.render('/login')
-	}
-});
-
-router.get("/addBooking", (req, res) => {
-	if (req.isAuthenticated()) {
-		res.render("booking/addBooking", {session: req.user});
-	}else{
-		res.redirect('login')
-	}
-});
-
 router.get("/reviews", (req, res) => {
 	res.render("reviews/index");
 });
