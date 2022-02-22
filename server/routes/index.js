@@ -2,6 +2,8 @@
 const express = require('express');
 const router = express.Router();
 
+
+
 router.get("/", (req, res) => {
 	res.render("index", {session: req.user});
 });
@@ -33,11 +35,11 @@ router.get("/register", (req, res) => {   //MISSING
 
 router.get("/booking", (req, res) => {
 	if (req.isAuthenticated()) {
+		
 		res.render("booking/index", {session: req.user});
 	}else{
 		res.render('/login')
 	}
-	
 });
 
 router.get("/addBooking", (req, res) => {
