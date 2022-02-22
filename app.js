@@ -74,10 +74,10 @@ app.set("views", path.join(__dirname, "views"));
 ///////////////////////////////////////////////////////////////////////////
 ///// Routes setup ////////////////////////////////////////////////////////
 
-const apiAuth = require("./server/routes/subroutes/auth");
-app.use("/api/auth", apiAuth);
-const apiCalendar = require("./server/routes/subroutes/calendar");
-app.use("/api/calendar", apiCalendar);
+const routerAuth = require("./server/routes/subroutes/auth");
+app.use("/auth", routerAuth);
+const routerCalendar = require("./server/routes/subroutes/calendar");
+app.use("/calendar", routerCalendar);
 
 
 const indexRouter = require("./server/routes/index");

@@ -4,6 +4,9 @@ const router = express.Router();
 
 const User = require('../../models/calendar_event')
 
+///////////////////////////////////////////////////////////////////////////
+///// API /////////////////////////////////////////////////////////////////
+
 router.post("/addBooking", async (req, res) => {
 	
 	const { date_start, date_end, guests_number } = req.body
@@ -29,6 +32,26 @@ router.post("/addBooking", async (req, res) => {
 		}
 	}
 	
+});
+
+///////////////////////////////////////////////////////////////////////////
+///// Routes //////////////////////////////////////////////////////////////
+
+router.get("/booking", (req, res) => {
+	if (req.isAuthenticated()) {
+		
+		res.render("booking/index", {session: req.user});
+	}else{
+		res.render('/login')
+	}
+});
+
+router.get("/addBooking", (req, res) => {
+	if (req.isAuthenticated()) {
+		res.render("booking/addBooking", {session: req.user});
+	}else{
+		res.redirect('login')
+	}
 });
 
 
