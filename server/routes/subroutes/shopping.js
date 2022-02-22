@@ -13,7 +13,7 @@ router.post("/api/addItem", async (req, res) => {
 	
 	res.json({ stat: 'it worky'})
 
-	const {  } = req.body
+	const { item } = req.body
 	const author = req.user.username	
 	
 	if(new Date(date_start).valueOf() < new Date().valueOf() - 86400000 || new Date(date_start).valueOf() > new Date(date_end).valueOf()){

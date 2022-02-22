@@ -8,7 +8,8 @@ const ShoppingList = new mongoose.Schema({
 	date_closure: { type: Date },
 	items: [
 		{ 
-			type: String
+			name: {type: String},
+			user: {type: mongoose.Schema.Types.ObjectId, ref: 'UserSchema'}
 		}
 	]
 	},
