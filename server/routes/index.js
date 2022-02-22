@@ -37,22 +37,6 @@ router.get("/reviews", (req, res) => {
 	res.render("reviews/index");
 });
 
-router.get("/shoppingList", (req, res) => {
-	if (req.isAuthenticated()) {
-		res.render("shoppingList/index", {session: req.user});
-	}else{
-		res.redirect('login')
-	}
-});
-
-router.get("/showList", (req, res) => {
-	if (req.isAuthenticated()) {
-		res.render("shoppingList/showList", {session: req.user});
-	}else{
-		res.redirect('login')
-	}
-});
-
 router.get("/profile", (req, res) => {
 	if (req.isAuthenticated()) {
 		res.render("profile/index", {session: req.user});

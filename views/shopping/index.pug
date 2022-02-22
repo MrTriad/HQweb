@@ -17,16 +17,13 @@ block append content
 	br
 	br
 	ul.list-group
-		li.list-group-item.list-group-item-primary Pane a fette
 		li.list-group-item.list-group-item-success Vino Rèmole
-		li.list-group-item.list-group-item-danger Insalta iceberg
-		li.list-group-item.list-group-item-success Salsa di pomodoro
-		li.list-group-item.list-group-item-success Burro
 	br
-	.input-group.mb-3
-		input.form-control(type='text' placeholder="Add any item" aria-label="Recipient's username" aria-describedby='basic-addon2')
-		.input-group-append
-			button.btn.btn-primary(type='button') Inserisci
+	form(action="shopping/api/addItem", method="post") 
+		.input-group.mb-3
+			input.form-control(type='text' placeholder="Add any item" aria-label="Recipient's username" aria-describedby='basic-addon2')
+			.input-group-append
+				button.btn.btn-primary.btn-block(type='submit') Inserisci
 	br
 	br
 	br

@@ -8,9 +8,9 @@ html(lang="en")
 		title HQweb - #{title}
 
 		block style
-			link(rel='stylesheet' href='css/bootstrap4-wizardry.min.css' type='text/css')
-			link(rel='stylesheet' href='css/fonts.css' type='text/css')
-			link(rel='stylesheet' href='css/navbar.css' type='text/css')
+			link(rel='stylesheet' href='../css/bootstrap4-wizardry.min.css' type='text/css')
+			link(rel='stylesheet' href='../css/fonts.css' type='text/css')
+			link(rel='stylesheet' href='../css/navbar.css' type='text/css')
 
 
 	body
@@ -48,7 +48,7 @@ html(lang="en")
 										span.title Login
 							-else
 								li
-									a(href='shoppingList')
+									a(href='shopping')
 										span.icon
 											i.fas.fa-cart-arrow-down
 										span.title Shop list
@@ -68,7 +68,7 @@ html(lang="en")
 											i.fas.fa-user
 										span.title #{session.username}
 								li
-									a(href='api/auth/logout')
+									a(href='/auth/api/logout')
 										span.icon
 											i.fas.fa-sign-out-alt
 										span.title Sign Out

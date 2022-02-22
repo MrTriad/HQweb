@@ -10,7 +10,7 @@ block append content
 			strong #{messages.error}
 
 	.jumbotron 
-		form(action="api/calendar/addBooking", method="post")
+		form(action="api/addBooking", method="post")
 			.form-group 
 				| Check In
 				input#date_start.form-control(type='date' name='date_start' )
