@@ -2,11 +2,15 @@ extends /layouts/standardNavbar.pug
 block variables
 	- var title = 'Booking'
 block append content
-	| aggiungere qui il calendario 
-	br
-	br
-	br
 	a.btn.btn-primary.btn-block(href='addBooking') Add a booking
 	br
+	a.btn.btn-primary.btn-block(onclick="alert('Not yet available')") Change your booking
 	br
-	a.btn.btn-primary.btn-block(href='#') Change your booking
+	.card.text-center
+		.card-header
+			| {Nome utente}
+		.card-body
+			p.card-text That was the best experience I have ever had.
+			span.badge.badge-pill.badge-danger Hosted by Zini
+		.card-footer.text-muted
+			| 2 days ago

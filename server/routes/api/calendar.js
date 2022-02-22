@@ -8,37 +8,27 @@ router.post("/addBooking", async (req, res) => {
 	
 	const { date_start, date_end, guests_number } = req.body
 	const author = req.user.username	
-
-	if(new Date(date_start).valueOf() < new Date().valueOf() || new Date(date_start).valueOf() < new Date(date_end).valueOf()){
-		req.flash('error_messages', 'wtf');
+	
+	if(new Date(date_start).valueOf() < new Date().valueOf() - 86400000 || new Date(date_start).valueOf() > new Date(date_end).valueOf()){
+		req.flash('error', 'Please enter a valid date');
 		res.redirect('/addBooking')
 	}else{
-		res.json({ res: false})
-	}
-	/*
-	res.locals.error_messages = req.flash('error_messages');
-	
-	try {
-		const response = await User.create({
-			author,
-			guests_number,
-			date_start,
-			date_end
-		})
-		console.log('### Event created successfully: ', response)
-	} catch (error) {
-		if (error.code == 11000) {
-			return res.json({ status: 'error', error: 'Username already in use' })
-		} else {
-			console.log(error)
-			return res.json({ status: 'error' })
+		try {
+			const response = await User.create({
+				author,
+				guests_number,
+				date_start,
+				date_end
+			})
+			req.flash('success', 'Event created with success!');
+			console.log('CREATED')
+			res.redirect('/addBooking')
+		} catch (error) {
+			req.flash('error', 'System error, contact an admin');
+			res.redirect('/addBooking')
 		}
 	}
-
-	res.json({stat: 'ok'})
 	
-	
-	*/	
 });
 
 
