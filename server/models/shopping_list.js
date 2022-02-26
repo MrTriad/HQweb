@@ -8,13 +8,14 @@ const ShoppingList = new mongoose.Schema({
 	date_closure: { type: Date },
 	items: [
 		{ 
-			name: {type: String},
-			user: {type: mongoose.Schema.Types.ObjectId, ref: 'UserSchema'}
+			name: {type: String, required: true},
+			user: {type: mongoose.Schema.Types.ObjectId, ref: 'UserSchema', required: true}
 		}
 	]
 	},
 	{ collection: 'shopping_list' }
 )
+
 
 
 const model = mongoose.model('ShoppingList', ShoppingList)

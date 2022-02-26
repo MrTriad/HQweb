@@ -5,10 +5,12 @@ block append content
 
 	/////////////////////////////////////////////////////////////////////////////
 
-	.alert.alert-dismissible.fade.show.alert-danger(role='alert')
-		button.close(type='button' data-dismiss='alert' aria-label='Close')
-			span(aria-hidden='true') &times;
-		| Solo l'ultimo showList funziona gli altri sono predisposti per un id
+	-if(messages.success)
+		.alert.alert-success(role='alert')
+			strong #{messages.success}
+	-else if(messages.error)
+		.alert.alert-danger(role='alert')
+			strong #{messages.error}
 		
 	/////////////////////////////////////////////////////////////////////////////
 	span.badge.badge-primary Tave 
@@ -16,12 +18,14 @@ block append content
 	span.badge.badge-danger Zini
 	br
 	br
-	ul.list-group
-		li.list-group-item.list-group-item-success Vino Rèmole
+
+	each item in shopping_lists[shopping_lists.length-1].items
+		ul.list-group
+			li.list-group-item.list-group-item-success #{item.name}
 	br
 	form(action="shopping/api/addItem", method="post") 
 		.input-group.mb-3
-			input.form-control(type='text' name='item' placeholder="Add any item" aria-label="Recipient's username" aria-describedby='basic-addon2')
+			input.form-control(type='text' name='item_name' placeholder="Add any item" aria-label="Recipient's username" aria-describedby='basic-addon2')
 			.input-group-append
 				button.btn.btn-primary.btn-block(type='submit') Inserisci
 	br

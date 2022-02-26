@@ -33,8 +33,13 @@ router.get("/register", (req, res) => {   //MISSING
 	}
 });
 
-
-
+router.get("/reviews", (req, res) => {
+	if (req.isAuthenticated()) {
+		res.render("register", {session: req.user});
+	}else{
+		res.redirect('login')
+	}
+});
 
 router.get("/profile", (req, res) => {
 	if (req.isAuthenticated()) {

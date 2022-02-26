@@ -24,7 +24,6 @@ router.post("/api/addBooking", async (req, res) => {
 				date_end
 			})
 			req.flash('success', 'Event created with success!');
-			console.log('CREATED')
 			res.redirect('/booking/addBooking')
 		} catch (error) {
 			req.flash('error', 'System error, contact an admin');
