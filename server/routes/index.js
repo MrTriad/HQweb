@@ -35,9 +35,9 @@ router.get("/register", (req, res) => {   //MISSING
 
 router.get("/reviews", (req, res) => {
 	if (req.isAuthenticated()) {
-		res.render("register", {session: req.user});
+		res.render("reviews/index", {session: req.user});
 	}else{
-		res.redirect('login')
+		res.render("reviews/index");
 	}
 });
 
