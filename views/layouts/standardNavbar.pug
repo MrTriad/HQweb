@@ -36,34 +36,34 @@ html(lang="en")
 										i.fas.fa-home
 									span.title Home
 							li
-								a(href='reviews')
+								a(href='/reviews')
 									span.icon
 										i.fas.fa-edit
 									span.title Review
 							-if(typeof(session) == 'undefined')
 								li
-									a(href='login')
+									a(href='/login')
 										span.icon
 											i.fas.fa-user
 										span.title Login
 							-else
 								li
-									a(href='shopping')
+									a(href='/shopping')
 										span.icon
 											i.fas.fa-cart-arrow-down
 										span.title Shop list
 								li
-									a(href='houseworks')
+									a(href='/houseworks')
 										span.icon
 											i.fas.fa-check-square
 										span.title Houseworks
 								li
-									a(href='booking')
+									a(href='/booking')
 										span.icon
 											i.fas.fa-calendar
 										span.title Book
 								li
-									a(href='profile')
+									a(href='/profile')
 										span.icon
 											i.fas.fa-user
 										span.title #{session.username}
