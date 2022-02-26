@@ -14,18 +14,14 @@ router.post("/addReview", async (req, res) => {
 	
 	const { user, content, rate, posted_at } = req.body
     try {
-        const response = await Review.create({
-            user,
-            content,
-            rate,
-            posted_at
-        })
+        var review = new Review(req.body)
+        review.save()
         req.flash('success', 'Review created with success!');
-        console.log('CREATED')
-        res.redirect('/addReview')
+        res.redirect('/reviews')
+        
     } catch (error) {
         req.flash('error', 'System error, contact an admin');
-        res.redirect('/addReview')
+        res.redirect('/reviews/addReview')
     }
 	
 });
