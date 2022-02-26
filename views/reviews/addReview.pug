@@ -1,6 +1,9 @@
 extends /layouts/standardNavbar.pug
 block variables
 	- var title = 'Add Review'
+
+block prepend style 
+	link(rel='stylesheet' href='../../css/stars.css' type='text/css')
 block append content
 	-if(messages.success)
 		.alert.alert-success(role='alert')
@@ -9,37 +12,41 @@ block append content
 		.alert.alert-danger(role='alert')
 			strong #{messages.error}
 
-	.jumbotron 
-		form(action="/reviews/addReview", method="post")
-			.form-group 
-				| Host
-				input#username.form-control(type='username' name='user' )
-				| Review
-				input#content.form-control(type='textarea' name='content' )
-				| Rating
-				input#rate.form-control(type='number' name='rate' min='1' max='5')
-				br
-				//- input#1(type='radio' name='1' value='1')
-				//- label(for='1') 1 |||
-				//- input#2(type='radio' name='2' value='2')
-				//- label(for='2') 2 |||
-				//- input#3(type='radio' name='3' value='3')
-				//- label(for='3') 3 |||
-				//- input#4(type='radio' name='4' value='4')
-				//- label(for='4') 4 |||
-				//- input#5(type='radio' name='5' value='5')
-				//- label(for='5') 5 |||
-				br
-				input#date.form-control(type='date' name='posted_at' value=Date())
-				br
-				button.btn.btn-primary.btn-block(type='submit') Add Review
+	each user in users
+		.jumbotron 
+			form(action="/reviews/addReview", method="post")
+				.form-group 
+					| Host
+					select#username.form-control(type='username' name='user')
+						option(selected) Choose your host
+						option #{user.username}
 
-		
-		script.
-			Date.prototype.toDateInputValue = (function() {
-				var local = new Date(this);
-				local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-				return local.toJSON().slice(0,10);
-			});
+					| Review
+					textarea#content.form-control(type='text' name='content' placeholder='Insert here your review')
+					| Rating
+					 	
+					input#star-5.star.star-5(type='radio' name='rate' value=1)
+					label.star.star-5(for='star-5')
+					input#star-4.star.star-4(type='radio' name='rate' value=2)
+					label.star.star-4(for='star-4')
+					input#star-3.star.star-3(type='radio' name='rate' value=3)
+					label.star.star-3(for='star-3')
+					input#star-2.star.star-2(type='radio' name='rate' value=4)
+					label.star.star-2(for='star-2')
+					input#star-1.star.star-1(type='radio' name='rate' value=5)
+					label.star.star-1(for='star-1')
+					br
+					br
+					input#date.form-control(type='hidden' name='posted_at' value=Date())
+					br
+					button.btn.btn-primary.btn-block(type='submit') Add Review
 
-			document.getElementById('posted_at').valueAsDate = new Date();
+			
+			script.
+				Date.prototype.toDateInputValue = (function() {
+					var local = new Date(this);
+					local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+					return local.toJSON().slice(0,10);
+				});
+
+				document.getElementById('hidden').valueAsDate = new Date();
