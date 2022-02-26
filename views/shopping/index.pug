@@ -21,7 +21,7 @@ block append content
 
 	each item in shopping_lists[shopping_lists.length-1].items
 		ul.list-group
-			li.list-group-item.list-group-item-success #{item.name}
+			li.list-group-item.list-group-item-primary #{item.name}
 	br
 	form(action="shopping/api/addItem", method="post") 
 		.input-group.mb-3
@@ -32,43 +32,21 @@ block append content
 	br
 	br
 	h1.display-4 History 
-	br
-	.btn-group
-		button.btn.dropdown-toggle.btn-primary(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-			| 31/12/2021
-		.dropdown-menu(x-placement='bottom-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);')
-			.dropdown-item Pasta
-			.dropdown-item Pane
-			.dropdown-item Pizza
-			.dropdown-item Pesto
-			.dropdown-item Cipolla
-			.dropdown-item Maionese
-			.dropdown-divider
-			a.dropdown-item(href='showList/{ID}') Show List
-	br
-	br
-	.btn-group
-		button.btn.dropdown-toggle.btn-primary(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-			| 18/11/2021
-		.dropdown-menu(x-placement='bottom-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);')
-			.dropdown-item Vino
-			.dropdown-item Ketchup
-			.dropdown-item Kebab di pollo
-			.dropdown-item Patate
-			.dropdown-divider
-			a.dropdown-item(href='showList/{ID}') Show List
-	br
-	br
-	.btn-group
-		button.btn.dropdown-toggle.btn-primary(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-			| 21/10/2021
-		.dropdown-menu(x-placement='bottom-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);')
-			.dropdown-item Vino
-			.dropdown-item Ketchup
-			.dropdown-item Kebab di pollo
-			.dropdown-item Patate
-			.dropdown-divider
-			a.dropdown-item(href='/showList') Show List
+
+
+	div.container
+		.row
+			each shopping_list in shopping_lists.slice(1)
+				div.col-sm.text-center
+					br
+					button.btn.dropdown-toggle.btn-primary(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+						| #{moment(shopping_list.date_closure).format('DD/MM/YYYY')}
+					.dropdown-menu(x-placement='bottom-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);')
+						each item in shopping_list.items
+							.dropdown-item #{item.name}
+						.dropdown-divider
+						- var _id = shopping_list._id;
+						a.dropdown-item(href='shopping/showList/'+_id) Show List
 
 block append scripts
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

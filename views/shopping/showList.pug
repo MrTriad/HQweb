@@ -8,8 +8,5 @@ block append content
 	br
 	br
 	ul.list-group
-		li.list-group-item.list-group-item-success Pane a fette
-		li.list-group-item.list-group-item-primary Vino Rèmole
-		li.list-group-item.list-group-item-primary Insalta iceberg
-		li.list-group-item.list-group-item-danger Salsa di pomodoro
-		li.list-group-item.list-group-item-danger Burros
+		each item in shopping_list.items
+			li.list-group-item.list-group-item-primary #{item.name}

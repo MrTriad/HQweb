@@ -15,7 +15,7 @@ router.post("/api/addItem", async (req, res) => {
 
 	
 	try {
-		await ShoppingList.findOneAndUpdate({ total: null }, {$push: { items: { name: item_name, user: item_user} }}, { upsert: true, new: true, setDefaultsOnInsert: true })
+		await ShoppingList.findOneAndUpdate({}, {$push: { items: { name: item_name, user: item_user} }}, { upsert: true, new: true, setDefaultsOnInsert: true })
 
 	} catch (error) {
 		req.flash('error', 'System error, contact an admin');
@@ -33,14 +33,10 @@ router.post("/api/addItem", async (req, res) => {
 router.get("/", async (req, res) => {
 	if (req.isAuthenticated()) {
 		const shopping_list = await ShoppingList.find({}).sort({ date_closure: -1 })
-		
 		res.render("shopping/index", {
 			session: req.user,
 			shopping_lists: shopping_list
 		});
-		
-		
-		
 	}else{
 		res.redirect('login')
 	}
@@ -49,6 +45,15 @@ router.get("/", async (req, res) => {
 router.get("/showList", (req, res) => {
 	if (req.isAuthenticated()) {
 		res.render("shopping/showList", {session: req.user});
+	}else{
+		res.redirect('login')
+	}
+});
+
+router.get('/showList/:id', async (req,res) => {
+	const shopping_list = await ShoppingList.findOne({ _id: req.params.id })
+	if (req.isAuthenticated()) {
+		res.render("shopping/showList", {session: req.user, shopping_list: shopping_list });
 	}else{
 		res.redirect('login')
 	}
