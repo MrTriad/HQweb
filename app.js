@@ -78,6 +78,8 @@ const routerAuth = require("./server/routes/subroutes/auth");
 app.use("/auth", routerAuth);
 const routerBooking = require("./server/routes/subroutes/booking");
 app.use("/booking", routerBooking);
+const routerReview = require("./server/routes/subroutes/review");
+app.use("/reviews", routerReview);
 
 
 const indexRouter = require("./server/routes/index");

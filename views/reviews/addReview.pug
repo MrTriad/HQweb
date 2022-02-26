@@ -1,6 +1,45 @@
-//cambio layout perchè dovrebbe essere acessibile solo ai guests
-extends /layouts/loginLayout.pug
+extends /layouts/standardNavbar.pug
 block variables
 	- var title = 'Add Review'
 block append content
-	| Aggiungere
+	-if(messages.success)
+		.alert.alert-success(role='alert')
+			strong #{messages.success}
+	-else if(messages.error)
+		.alert.alert-danger(role='alert')
+			strong #{messages.error}
+
+	.jumbotron 
+		form(action="/reviews/addReview", method="post")
+			.form-group 
+				| Host
+				input#username.form-control(type='username' name='user' )
+				| Review
+				input#content.form-control(type='textarea' name='content' )
+				| Rating
+				input#rate.form-control(type='number' name='rate' min='1' max='5')
+				br
+				//- input#1(type='radio' name='1' value='1')
+				//- label(for='1') 1 |||
+				//- input#2(type='radio' name='2' value='2')
+				//- label(for='2') 2 |||
+				//- input#3(type='radio' name='3' value='3')
+				//- label(for='3') 3 |||
+				//- input#4(type='radio' name='4' value='4')
+				//- label(for='4') 4 |||
+				//- input#5(type='radio' name='5' value='5')
+				//- label(for='5') 5 |||
+				br
+				input#date.form-control(type='date' name='posted_at' value=Date())
+				br
+				button.btn.btn-primary.btn-block(type='submit') Add Review
+
+		
+		script.
+			Date.prototype.toDateInputValue = (function() {
+				var local = new Date(this);
+				local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+				return local.toJSON().slice(0,10);
+			});
+
+			document.getElementById('posted_at').valueAsDate = new Date();

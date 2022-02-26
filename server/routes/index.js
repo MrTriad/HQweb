@@ -33,9 +33,8 @@ router.get("/register", (req, res) => {   //MISSING
 	}
 });
 
-router.get("/reviews", (req, res) => {
-	res.render("reviews/index");
-});
+
+
 
 router.get("/shoppingList", (req, res) => {
 	if (req.isAuthenticated()) {
