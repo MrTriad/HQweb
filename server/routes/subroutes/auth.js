@@ -12,7 +12,7 @@ router.post("/login", passport.authenticate("local", {
 		failureFlash: true
 }));
 
-router.get('/logout', function(req, res){
+router.get('/api/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
@@ -36,7 +36,6 @@ router.post("/register", async (req, res) => {
 			console.log(error)
 			return res.json({ status: 'error' })
 		}
-		throw error
 	}
 
 	res.json({ status: 'oke' })

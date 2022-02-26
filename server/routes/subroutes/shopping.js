@@ -3,18 +3,22 @@ const express = require('express')
 const router = express.Router();
 
 const CalendarEvent = require('../../models/calendar_event')
+const ShoppingList = require('../../models/shopping_list')
+
 
 ///////////////////////////////////////////////////////////////////////////
 ///// API /////////////////////////////////////////////////////////////////
 
-router.post("/api/addBooking", async (req, res) => {
+router.post("/api/addItem", async (req, res) => {
 	
-	const { date_start, date_end, guests_number } = req.body
+	res.json({ stat: 'it worky'})
+
+	const { item } = req.body
 	const author = req.user.username	
 	
 	if(new Date(date_start).valueOf() < new Date().valueOf() - 86400000 || new Date(date_start).valueOf() > new Date(date_end).valueOf()){
 		req.flash('error', 'Please enter a valid date');
-		res.redirect('/booking/addBooking')
+		res.redirect('/addBooking')
 	}else{
 		try {
 			const response = await CalendarEvent.create({
@@ -25,10 +29,10 @@ router.post("/api/addBooking", async (req, res) => {
 			})
 			req.flash('success', 'Event created with success!');
 			console.log('CREATED')
-			res.redirect('/booking/addBooking')
+			res.redirect('/addBooking')
 		} catch (error) {
 			req.flash('error', 'System error, contact an admin');
-			res.redirect('/booking/addBooking')
+			res.redirect('/addBooking')
 		}
 	}
 	
@@ -37,21 +41,17 @@ router.post("/api/addBooking", async (req, res) => {
 ///////////////////////////////////////////////////////////////////////////
 ///// Routes //////////////////////////////////////////////////////////////
 
-router.get("/", async (req, res) => {
+router.get("/", (req, res) => {
 	if (req.isAuthenticated()) {
-		const calendar_events = await CalendarEvent.find().sort({ date_start: 1 })
-		res.render("booking/index", {
-			session: req.user,
-			calendar_events: calendar_events
-		});
+		res.render("shopping/index", {session: req.user});
 	}else{
-		res.render('/login')
+		res.redirect('login')
 	}
 });
 
-router.get("/addBooking", (req, res) => {
+router.get("/showList", (req, res) => {
 	if (req.isAuthenticated()) {
-		res.render("booking/addBooking", {session: req.user});
+		res.render("shopping/showList", {session: req.user});
 	}else{
 		res.redirect('login')
 	}

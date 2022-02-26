@@ -18,7 +18,6 @@ passport.deserializeUser((id, done) => {
 passport.use(new LocalStrategy({ usernameField: 'username' }, (username, password, done) => {
 	User.findOne({ username })
 		.then(user => {
-			console.log(password)
 			
 			if (!user) {
 				return done(null, false, { message: 'Wrong username or password' })
@@ -26,7 +25,6 @@ passport.use(new LocalStrategy({ usernameField: 'username' }, (username, passwor
 
 			bcrypt.compare(password, user.password)
 				.then(check => {
-					console.log(check, user)
 					return check ? done(null, user, { message: 'Success'}) : done(null, false, { message: 'Wrong username or password' })
 				})
 		})
