@@ -1,7 +1,7 @@
 "use strict"
 const express = require('express')
 const router = express.Router();
-
+const User = require('../../models/user')
 const Review = require('../../models/review')
 
 
@@ -36,8 +36,11 @@ router.get("/", async (req, res) => {
     });
 });
 
-router.get("/addReview", (req, res) => {
-	res.render("reviews/addReview");
+router.get("/addReview", async (req, res) => {
+    const users = await User.find()
+	res.render("reviews/addReview", {
+        users: users
+    });
 });
 
 module.exports = router
