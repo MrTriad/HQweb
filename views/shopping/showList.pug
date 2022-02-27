@@ -10,3 +10,5 @@ block append content
 	ul.list-group
 		each item in shopping_list.items
 			li.list-group-item.list-group-item-primary #{item.name}
+	ul.list-group
+		li.list-group-item.list-group-item-secondary #{shopping_list.total}€
