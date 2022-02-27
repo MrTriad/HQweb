@@ -2,15 +2,19 @@ extends /layouts/standardNavbar.pug
 block variables
 	- var title = 'Registration'
 block append content 
-	-if(messages.error)
+	-if(messages.success)
+		.alert.alert-success(role='alert')
+			strong #{messages.success}
+	-else if(messages.error)
 		.alert.alert-danger(role='alert')
 			strong #{messages.error}
 
 	.jumbotron
-		form(action='/api/auth/register' method='post')
+		form(action='/auth/api/register' method='post')
 			.form-group
 				label Username
 				input.form-control(type='username' name='username' placeholder='Enter username' required)
 				label Password
 				input.form-control(type='password' name='password' placeholder='Enter password' required)
+				br
 				button.btn.btn-primary(type='submit') Submit

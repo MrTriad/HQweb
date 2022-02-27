@@ -9,7 +9,7 @@ const User = require('../../models/user')
 ///////////////////////////////////////////////////////////////////////////
 ///// API /////////////////////////////////////////////////////////////////
 
-router.post("/auth/login", passport.authenticate("local", {
+router.post("/api/login", passport.authenticate("local", {
 	successRedirect: '/',
 	failureRedirect: '/auth/login',
 	failureFlash: true
@@ -25,9 +25,8 @@ router.get('/api/logout', function (req, res) {
 	}
 });
 
-router.post("/register", async (req, res) => {
+router.post("/api/register", async (req, res) => {
 	if (req.isAuthenticated()) {
-
 		const {
 			username,
 			password: plainPassword
@@ -39,24 +38,17 @@ router.post("/register", async (req, res) => {
 				username,
 				password
 			})
-			console.log('### User created successfully: ', response)
 		} catch (error) {
 			if (error.code == 11000) {
-				return res.json({
-					status: 'error',
-					error: 'Username already in use'
-				})
+				req.flash('error', 'Username already in use');
+				res.redirect('/auth/register')
 			} else {
-				console.log(error)
-				return res.json({
-					status: 'error'
-				})
+				req.flash('error', 'System error, contact an admin');
+				res.redirect('/auth/register')
 			}
 		}
 
-		res.json({
-			status: 'oke'
-		})
+		res.redirect('/profile')
 	} else {
 		res.redirect('/auth/login')
 	}
