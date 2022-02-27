@@ -120,16 +120,6 @@ router.get("/", async (req, res) => {
 	}
 });
 
-router.get("/showList", (req, res) => {
-	if (req.isAuthenticated()) {
-		res.render("shopping/showList", {
-			session: req.user
-		});
-	} else {
-		res.redirect('/auth/login')
-	}
-});
-
 router.post('/showList', async (req, res) => {
 	if (req.isAuthenticated()) {
 		const {
@@ -140,12 +130,25 @@ router.post('/showList', async (req, res) => {
 		}
 		const shopping_list = await ShoppingList.findOne({
 			_id: _id
+		}).populate({
+			path: 'items',
+			populate: {
+				path: 'user',
+				model: 'UserSchema',
+				populate: {
+					path: '_color',
+					model: 'ColorSchema'
+				}
+			}
 		})
-
-		res.render("shopping/showList", {
-			session: req.user,
-			shopping_list: shopping_list
-		});
+		if(shopping_list){
+			res.render("shopping/showList", {
+				session: req.user,
+				shopping_list: shopping_list
+			});
+		}else{
+			res.redirect('/shopping')
+		}
 	} else {
 		res.redirect('/auth/login')
 	}

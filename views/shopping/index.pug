@@ -13,26 +13,24 @@ block append content
 			strong #{messages.error}
 		
 	/////////////////////////////////////////////////////////////////////////////
-	span.badge.badge-primary Tave 
-	span.badge.badge-success Bru
-	span.badge.badge-danger Zini
-	br
-	br
+
 	form(action="shopping/api/addItem", method="post") 
 		.input-group.mb-3
 			input.form-control(type='text' name='item_name' placeholder="Add any item" aria-describedby='basic-addon2')
 			.input-group-append
 				button.btn.btn-primary.btn-block(type='submit') Inserisci
 	
-
-	each item in shopping_list_new.items
-		ul.list-group
-			li.list-group-item.list-group-item-primary #{item.name}
-			span.badge.badge-danger Zini
-	br
-	button.btn.btn-primary.btn-block(type="button" data-toggle="collapse" data-target="#completeList" aria-expanded="false" aria-controls="completeList")
-		|	Mark the list as complete
-	br
+	if shopping_list_new
+		- var color
+		each item in shopping_list_new.items
+			- color = 'badge-'+item.user._color.name
+			ul.list-group
+				li.list-group-item.list-group-item-primary #{item.name}
+					span.badge.float-right(class=color) #{item.user.username}
+		br
+		button.btn.btn-primary.btn-block(type="button" data-toggle="collapse" data-target="#completeList" aria-expanded="false" aria-controls="completeList")
+			|	Mark the list as complete
+		br
 	
 	div#completeList.collapse
 		form(action="shopping/api/terminateList", method="post") 
@@ -59,14 +57,6 @@ block append content
 							form(action="shopping/showList" method='post')
 								input(type="hidden", name="_id", value=_id)
 								button.dropdown-item(type="submit") Show List
-			div.col-sm.text-center
-					br
-					button.btn.dropdown-toggle.btn-primary(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-						| GWWAAA
-					.dropdown-menu(x-placement='bottom-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);')
-						.dropdown-divider
-						form(action="shopping/showList" method='post')
-							button.dropdown-item(type="submit") Show List
 
 block append scripts
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

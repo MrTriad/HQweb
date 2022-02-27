@@ -15,9 +15,10 @@ block append content
 		//- br
 		//- br
 		//- br
-		| Quick add shopping: 
-		form(action="shopping/api/addItem", method="post") 
-			.input-group.mb-3
-				input.form-control(type='text' name='item_name' placeholder="Add any item" aria-describedby='basic-addon2')
-				.input-group-append
-					button.btn.btn-primary.btn-block(type='submit') Add
+		if session
+			| Quick add shopping: 
+			form(action="shopping/api/addItem", method="post") 
+				.input-group.mb-3
+					input.form-control(type='text' name='item_name' placeholder="Add any item" aria-describedby='basic-addon2')
+					.input-group-append
+						button.btn.btn-primary.btn-block(type='submit') Add
