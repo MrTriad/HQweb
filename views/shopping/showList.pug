@@ -2,11 +2,11 @@ extends /layouts/standardNavbar.pug
 block variables
 	- var title = 'Show List'
 block append content
-	span.badge.badge-primary Tave 
-	span.badge.badge-success Bru
-	span.badge.badge-danger Zini
-	br
-	br
+	//- span.badge.badge-primary Tave 
+	//- span.badge.badge-success Bru
+	//- span.badge.badge-danger Zini
+	//- br
+	//- br
 	ul.list-group
 		each item in shopping_list.items
 			li.list-group-item.list-group-item-primary #{item.name}
