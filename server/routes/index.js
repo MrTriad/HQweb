@@ -9,19 +9,12 @@ router.get("/", (req, res) => {
 });
 
 router.get("/houseworks", (req, res) => {
-	if (req.isAuthenticated()) {
-		res.render("houseworks/index", {session: req.user});
-	}else{
-		res.redirect('/auth/login')
-	}
+	res.render("houseworks/index", {session: req.user});
 });
 
 router.get("/profile", (req, res) => {
-	if (req.isAuthenticated()) {
-		res.render("profile/index", {session: req.user});
-	}else{
-		res.redirect('/auth/login')
-	}
+
+	res.render("profile/index", {session: req.user});
 });
 
 const Color = require('../models/color')
