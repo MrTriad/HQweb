@@ -46,18 +46,27 @@ block append content
 
 	div.container
 		.row
-			each shopping_list in shopping_lists.slice(0,-1)
-				div.col-sm.text-center
+			each shopping_list in shopping_lists
+				if shopping_list.total > 0
+					div.col-sm.text-center
+						br
+						button.btn.dropdown-toggle.btn-primary(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+							| #{moment(shopping_list.date_closure).format('DD/MM/YYYY')}
+						.dropdown-menu(x-placement='bottom-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);')
+							each item in shopping_list.items
+								.dropdown-item #{item.name}
+							.dropdown-divider
+							- var _id = shopping_list._id;
+							form(action="shopping/showList" method='post')
+								input(type="hidden", name="_id", value=_id)
+								button.dropdown-item(type="submit") Show List
+			div.col-sm.text-center
 					br
 					button.btn.dropdown-toggle.btn-primary(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-						| #{moment(shopping_list.date_closure).format('DD/MM/YYYY')}
+						| GWWAAA
 					.dropdown-menu(x-placement='bottom-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);')
-						each item in shopping_list.items
-							.dropdown-item #{item.name}
 						.dropdown-divider
-						- var _id = shopping_list._id;
 						form(action="shopping/showList" method='post')
-							input(type="hidden", name="_id", value=_id)
 							button.dropdown-item(type="submit") Show List
 
 block append scripts

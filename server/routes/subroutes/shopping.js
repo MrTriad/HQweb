@@ -45,14 +45,12 @@ router.post("/api/terminateList", async (req, res) => {
 			req.flash('error', 'Please enter a valid item name');
 			res.redirect('/shopping')
 		}else{
-		
 			try {
 				await ShoppingList.findOneAndUpdate({ date_closure: null }, {
-						total: list_cost,
-						payer: list_user,
-						date_closure: new Date()
-					})
-
+					total: list_cost,
+					payer: list_user,
+					date_closure: new Date()
+				})
 			} catch (error) {
 				req.flash('error', 'System error, contact an admin');
 				res.redirect('/shopping')
