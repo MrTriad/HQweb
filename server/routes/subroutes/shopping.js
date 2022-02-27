@@ -89,12 +89,31 @@ router.post("/api/terminateList", async (req, res) => {
 
 router.get("/", async (req, res) => {
 	if (req.isAuthenticated()) {
-		const shopping_list = await ShoppingList.find({}).sort({
+		const shopping_lists_old = await ShoppingList.find({
+			"date_closure": {
+				$ne: null
+			}
+		}).sort({
 			date_closure: -1
 		})
+		const shopping_list_new = await ShoppingList.findOne({
+			"date_closure": null
+		}).populate({
+			path: 'items',
+			populate: {
+				path: 'user',
+				model: 'UserSchema',
+				populate: {
+					path: '_color',
+					model: 'ColorSchema'
+				}
+			}
+		})
+
 		res.render("shopping/index", {
 			session: req.user,
-			shopping_lists: shopping_list
+			shopping_lists_old: shopping_lists_old,
+			shopping_list_new: shopping_list_new
 		});
 	} else {
 		res.redirect('/auth/login')

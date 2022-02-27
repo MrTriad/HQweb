@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs')
 const passport = require('passport')
 
 const User = require('../../models/user')
+const Color = require('../../models/color')
 
 ///////////////////////////////////////////////////////////////////////////
 ///// API /////////////////////////////////////////////////////////////////
@@ -29,6 +30,7 @@ router.post("/api/register", async (req, res) => {
 	if (req.isAuthenticated()) {
 		const {
 			username,
+			_color,
 			password: plainPassword
 		} = req.body
 		const password = await bcrypt.hash(plainPassword, 10)
@@ -36,8 +38,10 @@ router.post("/api/register", async (req, res) => {
 		try {
 			const response = await User.create({
 				username,
-				password
+				password,
+				_color
 			})
+			await Color.findOneAndUpdate({ _id: _color }, { _user: response._id })
 		} catch (error) {
 			if (error.code == 11000) {
 				req.flash('error', 'Username already in use');
@@ -66,9 +70,10 @@ router.get("/login", (req, res) => {
 });
 
 
-router.get("/register", (req, res) => {   //MISSING
+router.get("/register", async (req, res) => {  
 	if (req.isAuthenticated()) {
-		res.render("register", {session: req.user});
+		const colors = await Color.find({ _user: null })
+		res.render("register", {session: req.user, colors: colors});
 	}else{
 		res.redirect('/auth/login')
 	}

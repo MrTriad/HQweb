@@ -25,9 +25,10 @@ block append content
 				button.btn.btn-primary.btn-block(type='submit') Inserisci
 	
 
-	each item in shopping_lists[shopping_lists.length-1].items
+	each item in shopping_list_new.items
 		ul.list-group
 			li.list-group-item.list-group-item-primary #{item.name}
+			span.badge.badge-danger Zini
 	br
 	button.btn.btn-primary.btn-block(type="button" data-toggle="collapse" data-target="#completeList" aria-expanded="false" aria-controls="completeList")
 		|	Mark the list as complete
@@ -39,14 +40,12 @@ block append content
 				input.form-control(type='number' name='list_cost' placeholder="Enter the final cost" aria-describedby='basic-addon2')
 				.input-group-append
 					button.btn.btn-primary(type='submit') Complete the list
-
 	
 	h1.display-4 History 
 
-
 	div.container
 		.row
-			each shopping_list in shopping_lists
+			each shopping_list in shopping_lists_old
 				if shopping_list.total > 0
 					div.col-sm.text-center
 						br
