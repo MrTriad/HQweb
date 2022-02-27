@@ -9,7 +9,7 @@ const User = require('../../models/user')
 ///////////////////////////////////////////////////////////////////////////
 ///// API /////////////////////////////////////////////////////////////////
 
-router.post("/auth/login", passport.authenticate("local", {
+router.post("/api/login", passport.authenticate("local", {
 	successRedirect: '/',
 	failureRedirect: '/auth/login',
 	failureFlash: true

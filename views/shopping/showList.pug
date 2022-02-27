@@ -10,5 +10,11 @@ block append content
 	ul.list-group
 		each item in shopping_list.items
 			li.list-group-item.list-group-item-primary #{item.name}
+			a.btn.btn-sm.btn-primary.my-1.my-sm-0(href='#')
+			span.fas.fa-edit.mr-1
+			|           Edit
+			a.btn.btn-sm.btn-danger.my-1.my-sm-0(href='#')
+			span.fas.fa-trash.mr-1
+			|           Delete
 	ul.list-group
 		li.list-group-item.list-group-item-secondary #{shopping_list.total}€
