@@ -1,0 +1,8 @@
+/* https://bootsnipp.com/snippets/n8lOy */
+
+.btn span.glyphicon {    			
+	opacity: 0;				
+}
+.btn.active span.glyphicon {				
+	opacity: 1;				
+}

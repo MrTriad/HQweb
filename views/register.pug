@@ -1,6 +1,8 @@
 extends /layouts/standardNavbar.pug
 block variables
 	- var title = 'Registration'
+block append style 
+	link(rel='stylesheet' href='../../css/radio.css' type='text/css')
 block append content 
 	-if(messages.success)
 		.alert.alert-success(role='alert')
@@ -16,5 +18,26 @@ block append content
 				input.form-control(type='username' name='username' placeholder='Enter username' required)
 				label Password
 				input.form-control(type='password' name='password' placeholder='Enter password' required)
+				label Color 
+				.btn-group(data-toggle='buttons')
+					label.btn.btn-success.active
+						input#option2(type='radio' name='options' autocomplete='off' chacked='')
+						span.glyphicon.glyphicon-ok
+					label.btn.btn-primary
+						input#option1(type='radio' name='options' autocomplete='off')
+						span.glyphicon.glyphicon-ok
+					label.btn.btn-info
+						input#option2(type='radio' name='options' autocomplete='off')
+						span.glyphicon.glyphicon-ok
+					label.btn.btn-default
+						input#option2(type='radio' name='options' autocomplete='off')
+						span.glyphicon.glyphicon-ok
+					label.btn.btn-warning
+						input#option2(type='radio' name='options' autocomplete='off')
+						span.glyphicon.glyphicon-ok
+					label.btn.btn-danger
+						input#option2(type='radio' name='options' autocomplete='off')
+						span.glyphicon.glyphicon-ok
+
 				br
 				button.btn.btn-primary(type='submit') Submit
