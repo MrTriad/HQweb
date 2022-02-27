@@ -3,7 +3,7 @@
 const mongoose = require('mongoose')
 
 const CalendarEventSchema = new mongoose.Schema({
-	author: { type: String, required: true },		//andrebbe cambiato con una relazione ma sono stanco
+	author: {type: mongoose.Schema.Types.ObjectId, ref: 'UserSchema', required: true},
 	guests_number: { type: Number, required: true },
 	date_start: { type: Date, required: true },
 	date_end: { type: Date, required: true }

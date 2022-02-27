@@ -10,7 +10,7 @@ const CalendarEvent = require('../../models/calendar_event')
 router.post("/api/addBooking", async (req, res) => {
 	
 	const { date_start, date_end, guests_number } = req.body
-	const author = req.user.username	
+	const author = req.user._id	
 	
 	if(new Date(date_start).valueOf() < new Date().valueOf() - 86400000 || new Date(date_start).valueOf() > new Date(date_end).valueOf()){
 		req.flash('error', 'Please enter a valid date');
@@ -38,7 +38,7 @@ router.post("/api/addBooking", async (req, res) => {
 
 router.get("/", async (req, res) => {
 	if (req.isAuthenticated()) {
-		const calendar_events = await CalendarEvent.find().sort({ date_start: 1 })
+		const calendar_events = await CalendarEvent.find().sort({ date_start: 1 }).populate('author')
 		res.render("booking/index", {
 			session: req.user,
 			calendar_events: calendar_events

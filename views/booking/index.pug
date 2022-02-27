@@ -11,5 +11,5 @@ block append content
 			.card-header
 				p #{moment(calendar_event.date_start).format('DD/MM/YYYY')} - #{moment(calendar_event.date_end).format('DD/MM/YYYY')}
 			.card-body
-				p.card-text #{calendar_event.author} booked for #{calendar_event.guests_number}
+				p.card-text #{calendar_event.author.username} booked for #{calendar_event.guests_number}
 		br

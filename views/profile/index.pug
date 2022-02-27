@@ -12,20 +12,22 @@ block append content
 			br
 			| Host Rating Level:  
 			br
-			i.fa.fa-star(aria-hidden='true')
-			i.fa.fa-star(aria-hidden='true')
-			i.fa.fa-star(aria-hidden='true')
-			i.fa.fa-star(aria-hidden='true')
-			i.fa.fa-star-o(aria-hidden='true')
+			i.fas.fa-star(aria-hidden='true')
+			i.fas.fa-star(aria-hidden='true')
+			i.fas.fa-star(aria-hidden='true')
+			i.fas.fa-star(aria-hidden='true')
+			i.far.fa-star(aria-hidden='true')
 		div(class="col-8")
+			- const _id = session._id
+			- const username = session.username
 			|	ID
-			input#example-text-input.form-control(type='text' value='132900' readonly)
+			input#example-text-input.form-control(type='text' value=_id readonly)
 			br
 			|	Type
-			input#example-text-input.form-control(type='text' value='tenant' readonly)
+			input#example-text-input.form-control(type='text' value='Host' readonly)
 			br
 			|	User
-			input#example-text-input.form-control(type='text' value='Tave' readonly)
+			input#example-text-input.form-control(type='text' value=username readonly)
 			br
 			br
 			a.btn.btn-primary.btn-block(href='#!') Change Password
