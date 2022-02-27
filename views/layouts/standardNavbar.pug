@@ -38,38 +38,36 @@ html(lang="en")
 									span.icon
 										i.fas.fa-edit
 									span.title Review
-							-if(typeof(session) == 'undefined')
-								li
-									a(href='/auth/login')
-										span.icon
-											i.fas.fa-user
-										span.title Login
-							-else
-								li
-									a(href='/shopping')
-										span.icon
-											i.fas.fa-cart-arrow-down
-										span.title Shop list
-								li
-									a(onclick="alert('Not yet available')")
-										span.icon
-											i.fas.fa-check-square
-										span.title Houseworks
-								li
-									a(href='/booking')
-										span.icon
-											i.fas.fa-calendar
-										span.title Book
-								li
-									a(href='/profile')
-										span.icon
-											i.fas.fa-user
-										span.title #{session.username}
-								li
-									a(href='/auth/api/logout')
-										span.icon
-											i.fas.fa-sign-out-alt
-										span.title Sign Out
+							li
+								a(href='/auth/login')
+									span.icon
+										i.fas.fa-user
+									span.title Login
+							li
+								a(href='/shopping')
+									span.icon
+										i.fas.fa-cart-arrow-down
+									span.title Shop list
+							li
+								a(onclick="alert('Not yet available')")
+									span.icon
+										i.fas.fa-check-square
+									span.title Houseworks
+							li
+								a(href='/booking')
+									span.icon
+										i.fas.fa-calendar
+									span.title Book
+							li
+								a(href='/profile')
+									span.icon
+										i.fas.fa-user
+									span.title Profile
+							li
+								a(href='/auth/api/logout')
+									span.icon
+										i.fas.fa-sign-out-alt
+									span.title Sign Out
 
 				div(class='container')
 					block content
