@@ -38,7 +38,7 @@ router.post("/addReview", async (req, res) => {
 router.get("/", async (req, res) => {
 	const reviews = await Review.find().sort({
 		posted_at: -1
-	})
+	}).populate('host')
 	res.render("reviews/index", {
 		reviews: reviews,
 		session: req.user

@@ -19,7 +19,7 @@ block append content
 						- n++
 					starrate(#{review.rate})
 					p.card-text #{review.content}
-					span.badge.badge-pill.badge-danger Hosted by #{review.host}
+					span.badge.badge-pill.badge-danger Hosted by #{review.host.username}
 				.card-footer.text-muted
 					| #{review.posted_at}
 			br

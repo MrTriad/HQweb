@@ -4,7 +4,6 @@ block variables
 
 block prepend style 
 	link(rel='stylesheet' href='../../css/stars.css' type='text/css')
-	link(href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css' rel='stylesheet')
 
 block append content
 	-if(messages.success)
@@ -14,16 +13,16 @@ block append content
 		.alert.alert-danger(role='alert')
 			strong #{messages.error}
 
-	
 	.jumbotron 
-		form(action="/reviews/addReview", method="post")
+		form(action="/reviews/addReview" method="post")
 			.form-group 
 				| Reviewer
 				input#reviewer.form-control(type='username' name='user' )
 				| Host
 				select#username.form-control(type='username' name='host')
 					each user in users
-						option #{user.username}
+						- var user_id = user._id
+						option( value = user_id ) #{user.username}
 
 				| Review
 				textarea#content.form-control(type='text' name='content' placeholder='Insert here your review')
@@ -35,7 +34,7 @@ block append content
 				br
 				button.btn.btn-primary.btn-block(type='submit') Add Review
 
-		
+
 		script.
 			Date.prototype.toDateInputValue = (function() {
 				var local = new Date(this);
