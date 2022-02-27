@@ -16,10 +16,21 @@ block append content
 	
 
 	.jumbotron
-		| Quick add shopping: 
-		form(action="shopping/api/addItem", method="post") 
-			.input-group.mb-3
-				input.form-control(type='text' name='item_name' placeholder="Add any item" aria-describedby='basic-addon2')
-				.input-group-append
-					button.btn.btn-primary.btn-block(type='submit') Add 
-					
+		//- img(src='/images/schermata.png' alt='Image' class='img-fluid')
+		//- br
+		//- | Aggiungere Calendario qui 
+		//- br
+		//- br
+		//- br
+		//- | Your housework of the week is:
+		//- input#example-text-input.form-control(type='text' value='HOUSEWORK' readonly)
+		//- br
+		//- br
+		//- br
+		if session
+			| Quick add shopping: 
+			form(action="shopping/api/addItem", method="post") 
+				.input-group.mb-3
+					input.form-control(type='text' name='item_name' placeholder="Add any item" aria-describedby='basic-addon2')
+					.input-group-append
+						button.btn.btn-primary.btn-block(type='submit') Add

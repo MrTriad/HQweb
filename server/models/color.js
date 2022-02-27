@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose')
 
-const Color = new mongoose.Schema({
+const ColorSchema = new mongoose.Schema({
 	name: { type: String, required: true },	//metodo un po'raw. Ma funzionale per la demo
 	hex: { type: String, required: true },
 	_user: { type: mongoose.Schema.Types.ObjectId, ref: 'UserSchema'}
@@ -12,6 +12,6 @@ const Color = new mongoose.Schema({
 
 
 
-const model = mongoose.model('Color', Color)
+const model = mongoose.model('ColorSchema', ColorSchema)
 
 module.exports = model
