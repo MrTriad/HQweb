@@ -2,17 +2,19 @@ extends /layouts/standardNavbar.pug
 block variables
 	- var title = 'HQweb'
 block append content 
+	//- img(src='/images/schermata.png' alt='Image' class='img-fluid')
 	.jumbotron
-		br
-		| Aggiungere Calendario qui 
-		br
-		br
-		br
-		| Your housework of the week is:
-		input#example-text-input.form-control(type='text' value='HOUSEWORK' readonly)
-		br
-		br
-		br
+		//- img(src='/images/schermata.png' alt='Image' class='img-fluid')
+		//- br
+		//- | Aggiungere Calendario qui 
+		//- br
+		//- br
+		//- br
+		//- | Your housework of the week is:
+		//- input#example-text-input.form-control(type='text' value='HOUSEWORK' readonly)
+		//- br
+		//- br
+		//- br
 		| Quick add shopping: 
 		form(action="shopping/api/addItem", method="post") 
 			.input-group.mb-3
