@@ -1,71 +1,27 @@
 extends /layouts/standardNavbar.pug
 block variables
 	- var title = 'Reviews'
+block append style 
+	link(rel='stylesheet' href='../../css/stars.css' type='text/css')
 block append content
 	.jumbotron
-		.card.text-center
-			.card-header
-				| {Nome utente}
-			.card-body
-				i.fa.fa-star(aria-hidden='true')
-				i.fa.fa-star(aria-hidden='true')
-				i.fa.fa-star(aria-hidden='true')
-				i.fa.fa-star(aria-hidden='true')
-				i.fa.fa-star-o(aria-hidden='true')
-				p.card-text That was the best experience I have ever had.
-				span.badge.badge-pill.badge-danger Hosted by Zini
-			.card-footer.text-muted
-				| 2 days ago
-		br
-		br
-		br
-		.card.text-center
-			.card-header
-				| Federico Corona
-			.card-body
-				i.fa.fa-star(aria-hidden='true')
-				i.fa.fa-star(aria-hidden='true')
-				i.fa.fa-star(aria-hidden='true')
-				i.fa.fa-star-half-o(aria-hidden='true')
-				i.fa.fa-star-o(aria-hidden='true')
-				p.card-text Easy WiFi password ;)
-				span.badge.badge-pill.badge-success Hosted by Bru
-			.card-footer.text-muted
-				| 3 days ago
-		br
-		br
-		br
-		.card.text-center
-			.card-header
-				| Francesco Mosna
-			.card-body
-				i.fa.fa-star(aria-hidden='true')
-				i.fa.fa-star-half-o(aria-hidden='true')
-				i.fa.fa-star-o(aria-hidden='true')
-				i.fa.fa-star-o(aria-hidden='true')
-				i.fa.fa-star-o(aria-hidden='true')
-				p.card-text I had to cook...
-				span.badge.badge-pill.badge-primary Hosted by Tave
-			.card-footer.text-muted
-				| 4 days ago
-
-
-	//DA RIVEDERE COME IDEA
-	.jumbotron
-		h1.display-5 Total Rating stars
-		p.lead
-			i.fa.fa-star(aria-hidden='true')
-			i.fa.fa-star(aria-hidden='true')
-			i.fa.fa-star(aria-hidden='true')
-			i.fa.fa-star-half-o(aria-hidden='true')
-			i.fa.fa-star-o(aria-hidden='true')
-		hr.my-4
-		h1.display-5 Yours Rating stars
-			//span.badge.badge-pill.badge-primary Tave
-			//DA RIVEDERE
-		p.lead
-			i.fa.fa-star(aria-hidden='true')
-			i.fa.fa-star(aria-hidden='true')
-			i.fa.fa-star(aria-hidden='true')
-			i.fa.fa-star(aria-hidden='true')
-			i.fa.fa-star-o(aria-hidden='true')
+		each review in reviews
+			.card.text-center
+				.card-header
+					| #{review.user}
+				.card-body 
+					- var n = 0;
+					while n < review.rate
+						i.fas.fa-star
+						- n++
+					while n < 5
+						i.far.fa-star
+						- n++
+					starrate(#{review.rate})
+					p.card-text #{review.content}
+					span.badge.badge-pill.badge-danger Hosted by #{review.host}
+				.card-footer.text-muted
+					| #{review.posted_at}
+			br
+			br
+	

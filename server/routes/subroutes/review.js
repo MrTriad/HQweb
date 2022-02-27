@@ -12,7 +12,7 @@ const Review = require('../../models/review')
 
 router.post("/addReview", async (req, res) => {
 	
-	const { user, content, rate, posted_at } = req.body
+	const { user, host, content, rate, posted_at } = req.body
     try {
         var review = new Review(req.body)
         review.save()
@@ -30,7 +30,7 @@ router.post("/addReview", async (req, res) => {
 ///// Routes //////////////////////////////////////////////////////////////
 
 router.get("/", async (req, res) => {
-    const reviews = await Review.find().sort({ posted_at: 1 })
+    const reviews = await Review.find().sort({ posted_at: -1 })
     res.render("reviews/index", {
         reviews: reviews
     });

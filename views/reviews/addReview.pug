@@ -4,6 +4,8 @@ block variables
 
 block prepend style 
 	link(rel='stylesheet' href='../../css/stars.css' type='text/css')
+	link(href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css' rel='stylesheet')
+
 block append content
 	-if(messages.success)
 		.alert.alert-success(role='alert')
@@ -12,41 +14,33 @@ block append content
 		.alert.alert-danger(role='alert')
 			strong #{messages.error}
 
-	each user in users
-		.jumbotron 
-			form(action="/reviews/addReview", method="post")
-				.form-group 
-					| Host
-					select#username.form-control(type='username' name='user')
-						option(selected) Choose your host
+	
+	.jumbotron 
+		form(action="/reviews/addReview", method="post")
+			.form-group 
+				| Reviewer
+				input#reviewer.form-control(type='username' name='user' )
+				| Host
+				select#username.form-control(type='username' name='host')
+					each user in users
 						option #{user.username}
 
-					| Review
-					textarea#content.form-control(type='text' name='content' placeholder='Insert here your review')
-					| Rating
-					 	
-					input#star-5.star.star-5(type='radio' name='rate' value=1)
-					label.star.star-5(for='star-5')
-					input#star-4.star.star-4(type='radio' name='rate' value=2)
-					label.star.star-4(for='star-4')
-					input#star-3.star.star-3(type='radio' name='rate' value=3)
-					label.star.star-3(for='star-3')
-					input#star-2.star.star-2(type='radio' name='rate' value=4)
-					label.star.star-2(for='star-2')
-					input#star-1.star.star-1(type='radio' name='rate' value=5)
-					label.star.star-1(for='star-1')
-					br
-					br
-					input#date.form-control(type='hidden' name='posted_at' value=Date())
-					br
-					button.btn.btn-primary.btn-block(type='submit') Add Review
+				| Review
+				textarea#content.form-control(type='text' name='content' placeholder='Insert here your review')
+				| Rating
+				input#rate.form-control(type='number' name='rate' min='1' max='5')
+				br
+				br
+				input#date.form-control(type='hidden' name='posted_at' value=Date())
+				br
+				button.btn.btn-primary.btn-block(type='submit') Add Review
 
-			
-			script.
-				Date.prototype.toDateInputValue = (function() {
-					var local = new Date(this);
-					local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-					return local.toJSON().slice(0,10);
-				});
+		
+		script.
+			Date.prototype.toDateInputValue = (function() {
+				var local = new Date(this);
+				local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+				return local.toJSON().slice(0,10);
+			});
 
-				document.getElementById('hidden').valueAsDate = new Date();
+			document.getElementById('hidden').valueAsDate = new Date();
