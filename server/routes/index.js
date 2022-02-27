@@ -12,32 +12,7 @@ router.get("/houseworks", (req, res) => {
 	if (req.isAuthenticated()) {
 		res.render("houseworks/index", {session: req.user});
 	}else{
-		res.redirect('login')
-	}
-});
-
-router.get("/login", (req, res) => {
-	if (req.isAuthenticated()) {
-		res.redirect("/");
-	}else{
-		res.render('login')
-	}
-});
-
-
-router.get("/register", (req, res) => {   //MISSING
-	if (req.isAuthenticated()) {
-		res.render("register", {session: req.user});
-	}else{
-		res.redirect('login')
-	}
-});
-
-router.get("/reviews", (req, res) => {
-	if (req.isAuthenticated()) {
-		res.render("reviews/index", {session: req.user});
-	}else{
-		res.render("reviews/index");
+		res.redirect('/auth/login')
 	}
 });
 
@@ -45,7 +20,7 @@ router.get("/profile", (req, res) => {
 	if (req.isAuthenticated()) {
 		res.render("profile/index", {session: req.user});
 	}else{
-		res.redirect('login')
+		res.redirect('/auth/login')
 	}
 });
 

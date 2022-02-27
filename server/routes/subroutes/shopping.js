@@ -46,7 +46,7 @@ router.post("/api/addItem", async (req, res) => {
 			res.redirect('/shopping')
 		}
 	} else {
-		res.redirect('/login')
+		res.redirect('/auth/login')
 	}
 
 });
@@ -79,7 +79,7 @@ router.post("/api/terminateList", async (req, res) => {
 			res.redirect('/shopping')
 		}
 	} else {
-		res.redirect('/login')
+		res.redirect('/auth/login')
 	}
 
 });
@@ -97,7 +97,7 @@ router.get("/", async (req, res) => {
 			shopping_lists: shopping_list
 		});
 	} else {
-		res.redirect('/login')
+		res.redirect('/auth/login')
 	}
 });
 
@@ -107,7 +107,7 @@ router.get("/showList", (req, res) => {
 			session: req.user
 		});
 	} else {
-		res.redirect('/login')
+		res.redirect('/auth/login')
 	}
 });
 
@@ -128,7 +128,7 @@ router.post('/showList', async (req, res) => {
 			shopping_list: shopping_list
 		});
 	} else {
-		res.redirect('/login')
+		res.redirect('/auth/login')
 	}
 
 });

@@ -9,9 +9,9 @@ const User = require('../../models/user')
 ///////////////////////////////////////////////////////////////////////////
 ///// API /////////////////////////////////////////////////////////////////
 
-router.post("/login", passport.authenticate("local", {
+router.post("/auth/login", passport.authenticate("local", {
 	successRedirect: '/',
-	failureRedirect: '/login',
+	failureRedirect: '/auth/login',
 	failureFlash: true
 }));
 
@@ -21,7 +21,7 @@ router.get('/api/logout', function (req, res) {
 		req.logout();
 		res.redirect('/');
 	} else {
-		res.redirect('/login')
+		res.redirect('/auth/login')
 	}
 });
 
@@ -58,8 +58,29 @@ router.post("/register", async (req, res) => {
 			status: 'oke'
 		})
 	} else {
-		res.redirect('/login')
+		res.redirect('/auth/login')
 	}
 });
+
+///////////////////////////////////////////////////////////////////////////
+///// Routes //////////////////////////////////////////////////////////////
+
+router.get("/login", (req, res) => {
+	if (req.isAuthenticated()) {
+		res.redirect("/");
+	}else{
+		res.render('login')
+	}
+});
+
+
+router.get("/register", (req, res) => {   //MISSING
+	if (req.isAuthenticated()) {
+		res.render("register", {session: req.user});
+	}else{
+		res.redirect('/auth/login')
+	}
+});
+
 
 module.exports = router

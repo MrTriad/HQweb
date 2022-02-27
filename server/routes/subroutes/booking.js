@@ -35,7 +35,7 @@ router.post("/api/addBooking", async (req, res) => {
 			}
 		}
 	} else {
-		res.render('/login')
+		res.redirect('/login')
 	}
 });
 
@@ -52,7 +52,7 @@ router.get("/", async (req, res) => {
 			calendar_events: calendar_events
 		});
 	} else {
-		res.render('/login')
+		res.redirect('/login')
 	}
 });
 
@@ -62,7 +62,7 @@ router.get("/addBooking", (req, res) => {
 			session: req.user
 		});
 	} else {
-		res.redirect('/login')
+		res.redirect('/auth/login')
 	}
 });
 
