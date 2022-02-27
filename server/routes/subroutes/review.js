@@ -11,36 +11,46 @@ const Review = require('../../models/review')
 ///// API /////////////////////////////////////////////////////////////////
 
 router.post("/addReview", async (req, res) => {
-	
-	const { user, host, content, rate, posted_at } = req.body
-    try {
-        var review = new Review(req.body)
-        review.save()
-        req.flash('success', 'Review created with success!');
-        res.redirect('/reviews')
-        
-    } catch (error) {
-        req.flash('error', 'System error, contact an admin');
-        res.redirect('/reviews/addReview')
-    }
-	
+
+	const {
+		user,
+		host,
+		content,
+		rate,
+		posted_at
+	} = req.body
+	try {
+		var review = new Review(req.body)
+		review.save()
+		req.flash('success', 'Review created with success!');
+		res.redirect('/reviews')
+
+	} catch (error) {
+		req.flash('error', 'System error, contact an admin');
+		res.redirect('/reviews/addReview')
+	}
+
 });
 
 ///////////////////////////////////////////////////////////////////////////
 ///// Routes //////////////////////////////////////////////////////////////
 
 router.get("/", async (req, res) => {
-    const reviews = await Review.find().sort({ posted_at: -1 })
-    res.render("reviews/index", {
-        reviews: reviews
-    });
+	const reviews = await Review.find().sort({
+		posted_at: -1
+	})
+	res.render("reviews/index", {
+		reviews: reviews,
+		session: req.user
+	});
 });
 
 router.get("/addReview", async (req, res) => {
-    const users = await User.find()
+	const users = await User.find()
 	res.render("reviews/addReview", {
-        users: users
-    });
+		users: users,
+		session: req.user
+	});
 });
 
 module.exports = router
