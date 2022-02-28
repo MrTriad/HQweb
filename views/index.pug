@@ -2,7 +2,19 @@ extends /layouts/standardNavbar.pug
 block variables
 	- var title = 'HQweb'
 block append content 
-	//- img(src='/images/schermata.png' alt='Image' class='img-fluid')
+	.alert.alert-primary(role='alert' style='min-height: 380px;')
+		img(src='/images/finale.png' style='float: left; max-width:100%' alt='Image')
+		.x(style='text-align: center; line-height: 20px;')
+			h4.alert-heading News!
+			br
+			| -	ADDED: now you can add a booking. It's simple and fast.	
+			a.alert-link(href='/booking/addBooking') Show me now.
+			br
+			br
+			| -	RESOLVED: now you can see the star rating in reviews.	
+			a.alert-link(href='/reviews') Show me now.
+	
+
 	.jumbotron
 		//- img(src='/images/schermata.png' alt='Image' class='img-fluid')
 		//- br
