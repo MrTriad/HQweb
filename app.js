@@ -91,7 +91,11 @@ const indexRouter = require("./server/routes/index");
 app.use("/", indexRouter);
 
 app.use((req, res, next) => {
-  res.status(404).render("404NotFound")
+	if (req.isAuthenticated()) {
+		res.status(404).render("404NotFound", {session: req.user});
+	}else{
+		res.status(404).render("404NotFound")
+	}
 });
 
 ///////////////////////////////////////////////////////////////////////////
