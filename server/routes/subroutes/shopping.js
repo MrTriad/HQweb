@@ -3,7 +3,7 @@ const express = require('express')
 const router = express.Router();
 
 const ShoppingList = require('../../models/shopping_list')
-
+const User = require('../../models/user')
 
 ///////////////////////////////////////////////////////////////////////////
 ///// API /////////////////////////////////////////////////////////////////
@@ -20,7 +20,6 @@ router.post("/api/addItem", async (req, res) => {
 			req.flash('error', 'Please enter a valid item name');
 			res.redirect('/shopping')
 		} else {
-
 			try {
 				await ShoppingList.findOneAndUpdate({
 					date_closure: null
@@ -37,13 +36,19 @@ router.post("/api/addItem", async (req, res) => {
 					setDefaultsOnInsert: true
 				})
 
+				const user = await User.findOne({ _id: item_user  }).populate('_color')
+
+				//req.flash('success', 'Item addded correctly');
+				res.json({
+					name: item_name,
+					user: user.username,
+					color: user._color.name
+				})
+
 			} catch (error) {
 				req.flash('error', 'System error, contact an admin');
 				res.redirect('/shopping')
 			}
-
-			req.flash('success', 'Item addded correctly');
-			res.redirect('/shopping')
 		}
 	} else {
 		res.redirect('/auth/login')
@@ -141,12 +146,12 @@ router.post('/showList', async (req, res) => {
 				}
 			}
 		})
-		if(shopping_list){
+		if (shopping_list) {
 			res.render("shopping/showList", {
 				session: req.user,
 				shopping_list: shopping_list
 			});
-		}else{
+		} else {
 			res.redirect('/shopping')
 		}
 	} else {

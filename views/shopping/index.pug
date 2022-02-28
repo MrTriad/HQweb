@@ -1,6 +1,9 @@
 extends /layouts/standardNavbar.pug
 block variables
 	- var title = 'Shopping List'
+block append style 
+	script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js") 
+
 block append content
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -11,34 +14,36 @@ block append content
 	-else if(messages.error)
 		.alert.alert-danger(role='alert')
 			strong #{messages.error}
-		
+
 	/////////////////////////////////////////////////////////////////////////////
 
-	form(action="shopping/api/addItem", method="post") 
+
+	form#addItem(method="post") 
 		.input-group.mb-3
-			input.form-control(type='text' name='item_name' placeholder="Add any item" aria-describedby='basic-addon2')
+			input.form-control#item_name(type='text' name='item_name' placeholder="Add any item" aria-describedby='basic-addon2')
 			.input-group-append
 				button.btn.btn-primary.btn-block(type='submit') Inserisci
-	
+
 	if shopping_list_new
 		- var color
-		each item in shopping_list_new.items
-			- color = 'badge-'+item.user._color.name
-			ul.list-group
-				li.list-group-item.list-group-item-primary #{item.name}
-					span.badge.float-right(class=color) #{item.user.username}
+		ul.list-group
+			each item in shopping_list_new.items
+				- color = 'badge-'+item.user._color.name
+					li.list-group-item.list-group-item-primary #{item.name}
+						span.badge.float-right(class=color) #{item.user.username}
+			#item_list
 		br
+		
 		button.btn.btn-primary.btn-block(type="button" data-toggle="collapse" data-target="#completeList" aria-expanded="false" aria-controls="completeList")
 			|	Mark the list as complete
 		br
-	
 	div#completeList.collapse
-		form(action="shopping/api/terminateList", method="post") 
+		form(action="shopping/api/terminateList" method="post") 
 			.input-group.mb-3
 				input.form-control(type='number' name='list_cost' placeholder="Enter the final cost" aria-describedby='basic-addon2')
 				.input-group-append
 					button.btn.btn-primary(type='submit') Complete the list
-	
+
 	h1.display-4 History 
 
 	div.container
@@ -55,10 +60,29 @@ block append content
 							.dropdown-divider
 							- var _id = shopping_list._id;
 							form(action="shopping/showList" method='post')
-								input(type="hidden", name="_id", value=_id)
+								input(type="hidden" name="_id", value=_id)
 								button.dropdown-item(type="submit") Show List
 
+	script.
+
+		$(document).ready(function(){
+			$("form#addItem").submit(function(event) {
+				event.preventDefault();
+				var item_name = $("#item_name").val();
+				$.ajax({
+					type: "POST",
+					url: "/shopping/api/addItem",
+					data: "item_name=" + item_name,
+					success: function(response) {
+						$("#uploadResponse").html(JSON.stringify( response ));
+						$('#item_list').prepend('<li class="list-group-item list-group-item-primary">'+response.name+'<span class="badge float-right badge-'+response.color+'">'+response.user+'</span></li>');
+					}
+				});
+			});
+		});
+
+
 block append scripts
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
