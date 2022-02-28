@@ -24,8 +24,6 @@ router.get("/profile", (req, res) => {
 	}
 });
 
-const Color = require('../models/color')
-
 router.get("/debug", async (req,res) => {
 	res.json({ out: 'it worky'})
 })

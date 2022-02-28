@@ -90,6 +90,10 @@ app.use("/shopping", routerShopping);
 const indexRouter = require("./server/routes/index");
 app.use("/", indexRouter);
 
+app.use((req, res, next) => {
+  res.status(404).render("404NotFound")
+});
+
 ///////////////////////////////////////////////////////////////////////////
 ///// Server start ////////////////////////////////////////////////////////
 
