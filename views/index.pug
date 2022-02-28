@@ -1,6 +1,8 @@
 extends /layouts/standardNavbar.pug
 block variables
 	- var title = 'HQweb'
+block append style 
+	script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js") 
 block append content 
 	.alert.alert-primary(role='alert' style='min-height: 380px;')
 		img(src='/images/finale.png' style='float: left; max-width:100%' alt='Image')
@@ -28,9 +30,32 @@ block append content
 		//- br
 		//- br
 		if session
-			| Quick add shopping: 
-			form(action="shopping/api/addItem", method="post") 
+
+			label Quick add shopping: 
+			form#addItem(method="post") 
 				.input-group.mb-3
-					input.form-control(type='text' name='item_name' placeholder="Add any item" aria-describedby='basic-addon2')
+					input.form-control#item_name(type='text' name='item_name' placeholder="Add any item" aria-describedby='basic-addon2')
 					.input-group-append
 						button.btn.btn-primary.btn-block(type='submit') Add
+
+			#result
+
+	script.
+
+		$(document).ready(function(){
+			$("form#addItem").submit(function(event) {
+				event.preventDefault();
+				var item_name = $("#item_name").val();
+				$.ajax({
+					type: "POST",
+					url: "/shopping/api/addItem",
+					data: "item_name=" + item_name,
+					success: function(response) {
+						$('#result').append('<div class="alert alert-success alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close">    <span aria-hidden="true">×</span>  </button> Item '+response.name+' aggiunto correttamente </div>');
+					}
+				});
+			});
+		});
+
+block append scripts
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

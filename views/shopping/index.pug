@@ -24,16 +24,18 @@ block append content
 			.input-group-append
 				button.btn.btn-primary.btn-block(type='submit') Inserisci
 
+	
+	#item_list
 	if shopping_list_new
-		- var color
 		ul.list-group
+			- var color
+			
 			each item in shopping_list_new.items
 				- color = 'badge-'+item.user._color.name
 					li.list-group-item.list-group-item-primary #{item.name}
 						span.badge.float-right(class=color) #{item.user.username}
-			#item_list
 		br
-		
+
 		button.btn.btn-primary.btn-block(type="button" data-toggle="collapse" data-target="#completeList" aria-expanded="false" aria-controls="completeList")
 			|	Mark the list as complete
 		br
@@ -74,7 +76,6 @@ block append content
 					url: "/shopping/api/addItem",
 					data: "item_name=" + item_name,
 					success: function(response) {
-						$("#uploadResponse").html(JSON.stringify( response ));
 						$('#item_list').prepend('<li class="list-group-item list-group-item-primary">'+response.name+'<span class="badge float-right badge-'+response.color+'">'+response.user+'</span></li>');
 					}
 				});

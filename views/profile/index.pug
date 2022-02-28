@@ -2,39 +2,41 @@ extends /layouts/standardNavbar.pug
 block variables
 	- var title = 'Profile'
 block append content 
-	div(class="row")
-		div(class="col-4")
-			img(src='/images/4.png' alt='Image' class='img-fluid')
-			br
-			br
-			a.btn.btn-primary(href='#!') Change Avatar 
-			br
-			br
-			| Host Rating Level:  
-			br
-			i.fas.fa-star(aria-hidden='true')
-			i.fas.fa-star(aria-hidden='true')
-			i.fas.fa-star(aria-hidden='true')
-			i.fas.fa-star(aria-hidden='true')
-			i.far.fa-star(aria-hidden='true')
-		div(class="col-8")
-			- const _id = session._id
-			- const username = session.username
-			|	ID
-			input#example-text-input.form-control(type='text' value=_id readonly)
-			br
-			|	Type
-			input#example-text-input.form-control(type='text' value='Host' readonly)
-			br
-			|	User
-			input#example-text-input.form-control(type='text' value=username readonly)
-			br
-			br
-			a.btn.btn-primary.btn-block(href='/auth/register') Register a new profile
-			br
-			br
-			//TRASFORMARE IN TITOLO
-			
+		
+		//
+			div(class="row")
+			div(class="col-4")
+				img(src='/images/4.png' alt='Image' class='img-fluid')
+				br
+				br
+				a.btn.btn-primary(href='#!') Change Avatar 
+				br
+				br
+				| Host Rating Level:  
+				br
+				i.fas.fa-star(aria-hidden='true')
+				i.fas.fa-star(aria-hidden='true')
+				i.fas.fa-star(aria-hidden='true')
+				i.fas.fa-star(aria-hidden='true')
+				i.far.fa-star(aria-hidden='true')
+			div(class="col-8")
+		- const _id = session._id
+		- const username = session.username
+		|	ID
+		input#example-text-input.form-control(type='text' value=_id readonly)
+		br
+		|	Type
+		input#example-text-input.form-control(type='text' value='Host' readonly)
+		br
+		|	User
+		input#example-text-input.form-control(type='text' value=username readonly)
+		br
+		br
+		a.btn.btn-primary.btn-block(href='/auth/register') Register a new profile
+		br
+		br
+		//TRASFORMARE IN TITOLO
+		
 			br
 			br
 			br
